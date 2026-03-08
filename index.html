@@ -1,75 +1,183 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hansol Creative - Indie Game Studio</title>
+    <title>Hansol Creative - Number Crush</title>
     <style>
+        :root {
+            --bg-color: #1a1a2e;
+            --card-bg: #16213e;
+            --accent-pink: #e94560;
+            --accent-orange: #ff8a00;
+            --text-color: #ffffff;
+            --text-secondary: #a2a8d3;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1a1a2e;
-            color: #e94560;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            color: #ffffff;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
+
+        /* 헤더 스타일 */
         header {
             text-align: center;
-            padding: 4rem 2rem 2rem;
+            padding: 3rem 1rem;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), transparent);
         }
+
         header h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin: 0;
-            color: #0f3460;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            background: -webkit-linear-gradient(#e94560, #ff8a00);
+            background: linear-gradient(45deg, var(--accent-pink), var(--accent-orange));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
-        main {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
+
+        /* 섹션 공통 스타일 */
+        section {
+            max-width: 1000px;
+            margin: 0 auto 5rem;
+            padding: 0 2rem;
         }
-        .content-box {
-            background-color: #16213e;
-            padding: 3rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            max-width: 600px;
+
+        h2 {
+            font-size: 2rem;
+            color: var(--accent-pink);
             text-align: center;
-            line-height: 1.6;
+            margin-bottom: 2rem;
+            position: relative;
         }
-        .content-box h2 {
-            margin-top: 0;
-            color: #e94560;
-            font-size: 1.8rem;
+
+        /* 메인 배너 (Grand Launch) */
+        .hero-banner {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 3rem;
+            transition: transform 0.3s ease;
         }
-        .content-box p {
-            font-size: 1.1rem;
-            color: #a2a8d3;
-            margin-bottom: 1.5rem;
+
+        .hero-banner:hover {
+            transform: scale(1.02);
         }
+
+        /* 게임 소개 박스 */
+        .intro-box {
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        /* 유튜브 임베드 */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 비율 */
+            height: 0;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 4rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 스크린샷 갤러리 (세로 이미지 전용) */
+        .screenshot-wrapper {
+            display: flex;
+            overflow-x: auto;
+            gap: 1.5rem;
+            padding: 1rem 0 2rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-pink) var(--card-bg);
+        }
+
+        .screenshot-wrapper::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .screenshot-wrapper::-webkit-scrollbar-thumb {
+            background: var(--accent-pink);
+            border-radius: 10px;
+        }
+
+        .screenshot-item {
+            flex: 0 0 auto;
+            width: 200px; /* 세로형 스크린샷 크기 조정 */
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .screenshot-item:hover {
+            border-color: var(--accent-pink);
+            transform: translateY(-5px);
+        }
+
+        /* 다운로드 버튼 */
+        .cta-container {
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .btn-google-play {
+            display: inline-block;
+            background-color: #000000;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: background 0.3s;
+            border: 2px solid var(--accent-pink);
+        }
+
+        .btn-google-play:hover {
+            background-color: #222222;
+        }
+
+        .btn-google-play img {
+            height: 40px;
+            vertical-align: middle;
+        }
+
+        .btn-text {
+            color: white;
+            font-weight: bold;
+            margin-left: 10px;
+            font-size: 1.2rem;
+        }
+
         footer {
             text-align: center;
-            padding: 2rem;
-            font-size: 0.9rem;
+            padding: 4rem 2rem;
+            background-color: #111122;
             color: #7b83a0;
         }
+
         footer a {
-            color: #e94560;
+            color: var(--accent-pink);
             text-decoration: none;
-            margin-bottom: 10px;
-            display: inline-block;
-            transition: color 0.3s ease;
         }
-        footer a:hover {
-            color: #ff8a00;
+
+        /* 모바일 대응 */
+        @media (max-width: 600px) {
+            header h1 { font-size: 2.2rem; }
+            .screenshot-item { width: 160px; }
         }
     </style>
 </head>
@@ -79,22 +187,44 @@
         <h1>Hansol Creative</h1>
     </header>
 
-    <main>
-        <div class="content-box">
+    <section>
+        <img src="resources/GrandLaunch.png" alt="Number Crush Grand Launch" class="hero-banner">
+
+        <div class="intro-box">
             <h2>Crafting Fun & Mind-Bending Puzzles</h2>
             <p>
-                Welcome to Hansol Creative! We are an independent game studio passionate about making unique and engaging puzzle games. 
-            </p>
-            <p>
-                As a solo indie developer, our goal is to create clever challenges that stimulate your brain and bring joy to your everyday life. Stay tuned for our upcoming projects!
+                반갑습니다! <b>Hansol Creative</b>는 독특하고 몰입감 넘치는 퍼즐 게임을 만드는 1인 인디 게임 스튜디오입니다.
+                우리의 목표는 뇌를 자극하는 영리한 도전 과제를 통해 여러분의 일상에 즐거움을 더하는 것입니다.
             </p>
         </div>
-    </main>
+
+        <h2>Gameplay Preview</h2>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/KLA-umXe1Bs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <h2>Screenshots</h2>
+        <div class="screenshot-wrapper">
+            <img src="resources/Store_00001.png" alt="Screenshot 1" class="screenshot-item">
+            <img src="resources/Store_00002.png" alt="Screenshot 2" class="screenshot-item">
+            <img src="resources/Store_00003.png" alt="Screenshot 3" class="screenshot-item">
+            <img src="resources/Store_00004.png" alt="Screenshot 4" class="screenshot-item">
+            <img src="resources/Store_00005.png" alt="Screenshot 5" class="screenshot-item">
+        </div>
+
+        <div class="cta-container">
+            <a href="https://play.google.com/store/apps/details?id=com.HansolCreative.NumberBlocks" target="_blank" class="btn-google-play">
+                <span class="btn-text">GET IT ON Google Play</span>
+            </a>
+        </div>
+    </section>
 
     <footer>
-        <a href="privacy-policy.html">Privacy Policy</a>
-        <br>
-        &copy; 2026 Hansol Creative. All rights reserved.
+        <p>
+            <a href="privacy-policy.html">Privacy Policy</a> | 
+            Contact: <a href="mailto:contact@hansolcreative.com">contact@hansolcreative.com</a>
+        </p>
+        <p>&copy; 2026 Hansol Creative. All rights reserved.</p>
     </footer>
 
 </body>
