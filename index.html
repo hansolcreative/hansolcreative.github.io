@@ -1,183 +1,289 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hansol Creative - Number Crush</title>
+    <title>Hansol Creative | Indie Game Studio</title>
     <style>
         :root {
-            --bg-color: #1a1a2e;
-            --card-bg: #16213e;
-            --accent-pink: #e94560;
-            --accent-orange: #ff8a00;
-            --text-color: #ffffff;
-            --text-secondary: #a2a8d3;
+            --bg-color: #f8fafc;
+            --surface-color: #ffffff;
+            --primary-color: #4f46e5;
+            --primary-hover: #4338ca;
+            --accent-color: #ec4899;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: var(--bg-color);
-            color: var(--text-color);
+            color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* 헤더 스타일 */
+        /* Header Style */
         header {
             text-align: center;
-            padding: 3rem 1rem;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), transparent);
+            padding: 4rem 1rem 2rem;
+            background-color: var(--surface-color);
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 3rem;
         }
 
         header h1 {
-            font-size: 3.5rem;
+            font-size: 2.8rem;
             margin: 0;
-            background: linear-gradient(45deg, var(--accent-pink), var(--accent-orange));
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
         }
 
-        /* 섹션 공통 스타일 */
-        section {
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* Layout Container */
+        .container {
             max-width: 1000px;
-            margin: 0 auto 5rem;
-            padding: 0 2rem;
+            margin: 0 auto;
+            padding: 0 1.5rem;
         }
 
-        h2 {
-            font-size: 2rem;
-            color: var(--accent-pink);
+        /* Section Titles */
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--text-dark);
             text-align: center;
-            margin-bottom: 2rem;
-            position: relative;
+            margin: 4rem 0 2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
 
-        /* 메인 배너 (Grand Launch) */
-        .hero-banner {
-            width: 100%;
+        /* Showcase Section (Hero) */
+        .showcase {
+            background-color: var(--surface-color);
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            margin-bottom: 3rem;
-            transition: transform 0.3s ease;
-        }
-
-        .hero-banner:hover {
-            transform: scale(1.02);
-        }
-
-        /* 게임 소개 박스 */
-        .intro-box {
-            background-color: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 20px;
+            padding: 3rem;
             text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border-color);
             margin-bottom: 4rem;
         }
 
-        /* 유튜브 임베드 */
-        .video-container {
+        .badge {
+            display: inline-block;
+            background-color: #eef2ff;
+            color: var(--primary-color);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .showcase h2 {
+            font-size: 2.5rem;
+            margin: 0 0 1.5rem 0;
+            font-weight: 800;
+        }
+
+        /* Hero Image & Link Styles */
+        .hero-link {
+            display: block;
+            margin-bottom: 2.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            /* 링크 클릭 시 파란 테두리 방지 */
+            outline: none; 
+        }
+
+        .hero-image {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: block;
+        }
+
+        /* 마우스 오버 시 이미지 위로 떠오르는 효과 */
+        .hero-link:hover .hero-image {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.18);
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 750px;
+            margin: 0 auto 2.5rem;
+        }
+
+        /* Store Buttons */
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-store {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.8rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+            min-width: 220px;
+        }
+
+        .btn-play {
+            background-color: #000000;
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .btn-play:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-apple {
+            background-color: #f1f5f9;
+            color: #94a3b8;
+            cursor: not-allowed;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-store svg {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            fill: currentColor;
+        }
+
+        .btn-subtitle {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 400;
+            opacity: 0.8;
+            text-align: left;
+        }
+
+        .btn-title {
+            display: block;
+            text-align: left;
+            line-height: 1.2;
+        }
+
+        /* Video Section */
+        .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 비율 */
+            padding-bottom: 56.25%;
             height: 0;
-            border-radius: 15px;
+            border-radius: 16px;
             overflow: hidden;
-            margin-bottom: 4rem;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-color);
         }
 
-        .video-container iframe {
+        .video-wrapper iframe {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
         }
 
-        /* 스크린샷 갤러리 (세로 이미지 전용) */
-        .screenshot-wrapper {
+        /* Roadmap Section */
+        .roadmap-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .roadmap-card {
+            background-color: var(--surface-color);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--primary-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            transition: transform 0.2s;
+        }
+
+        .roadmap-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .roadmap-card h4 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .roadmap-card p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Screenshots Section */
+        .gallery {
             display: flex;
             overflow-x: auto;
             gap: 1.5rem;
             padding: 1rem 0 2rem;
             scrollbar-width: thin;
-            scrollbar-color: var(--accent-pink) var(--card-bg);
         }
 
-        .screenshot-wrapper::-webkit-scrollbar {
-            height: 8px;
+        .gallery::-webkit-scrollbar { height: 8px; }
+        .gallery::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        
+        .gallery img {
+            height: 420px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-color);
         }
 
-        .screenshot-wrapper::-webkit-scrollbar-thumb {
-            background: var(--accent-pink);
-            border-radius: 10px;
-        }
-
-        .screenshot-item {
-            flex: 0 0 auto;
-            width: 200px; /* 세로형 스크린샷 크기 조정 */
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .screenshot-item:hover {
-            border-color: var(--accent-pink);
-            transform: translateY(-5px);
-        }
-
-        /* 다운로드 버튼 */
-        .cta-container {
-            text-align: center;
-            margin-top: 4rem;
-        }
-
-        .btn-google-play {
-            display: inline-block;
-            background-color: #000000;
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: background 0.3s;
-            border: 2px solid var(--accent-pink);
-        }
-
-        .btn-google-play:hover {
-            background-color: #222222;
-        }
-
-        .btn-google-play img {
-            height: 40px;
-            vertical-align: middle;
-        }
-
-        .btn-text {
-            color: white;
-            font-weight: bold;
-            margin-left: 10px;
-            font-size: 1.2rem;
-        }
-
+        /* Footer */
         footer {
             text-align: center;
-            padding: 4rem 2rem;
-            background-color: #111122;
-            color: #7b83a0;
+            padding: 3rem 1rem;
+            background-color: var(--surface-color);
+            color: var(--text-muted);
+            margin-top: 5rem;
+            border-top: 1px solid var(--border-color);
         }
 
         footer a {
-            color: var(--accent-pink);
+            color: var(--primary-color);
             text-decoration: none;
+            font-weight: 500;
         }
 
-        /* 모바일 대응 */
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
+            .showcase { padding: 2rem 1.5rem; }
             header h1 { font-size: 2.2rem; }
-            .screenshot-item { width: 160px; }
+            .btn-store { width: 100%; }
         }
     </style>
 </head>
@@ -185,39 +291,74 @@
 
     <header>
         <h1>Hansol Creative</h1>
+        <p>Polished Puzzles, Premium Experiences.</p>
     </header>
 
-    <section>
-        <img src="resources/GrandLaunch.png" alt="Number Crush Grand Launch" class="hero-banner">
-
-        <div class="intro-box">
-            <h2>Crafting Fun & Mind-Bending Puzzles</h2>
-            <p>
-                반갑습니다! <b>Hansol Creative</b>는 독특하고 몰입감 넘치는 퍼즐 게임을 만드는 1인 인디 게임 스튜디오입니다.
-                우리의 목표는 뇌를 자극하는 영리한 도전 과제를 통해 여러분의 일상에 즐거움을 더하는 것입니다.
-            </p>
-        </div>
-
-        <h2>Gameplay Preview</h2>
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/KLA-umXe1Bs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-
-        <h2>Screenshots</h2>
-        <div class="screenshot-wrapper">
-            <img src="resources/Store_00001.png" alt="Screenshot 1" class="screenshot-item">
-            <img src="resources/Store_00002.png" alt="Screenshot 2" class="screenshot-item">
-            <img src="resources/Store_00003.png" alt="Screenshot 3" class="screenshot-item">
-            <img src="resources/Store_00004.png" alt="Screenshot 4" class="screenshot-item">
-            <img src="resources/Store_00005.png" alt="Screenshot 5" class="screenshot-item">
-        </div>
-
-        <div class="cta-container">
-            <a href="https://play.google.com/store/apps/details?id=com.HansolCreative.NumberBlocks" target="_blank" class="btn-google-play">
-                <span class="btn-text">GET IT ON Google Play</span>
+    <main class="container">
+        
+        <section class="showcase">
+            <span class="badge">Our Debut Title</span>
+            <h2>Number Crush</h2>
+            
+            <a href="https://play.google.com/store/apps/details?id=com.HansolCreative.NumberBlocks" target="_blank" class="hero-link" title="Download Number Crush on Google Play">
+                <img src="resources/GrandLaunch.png" alt="Number Crush Official Banner" class="hero-image">
             </a>
+            
+            <p class="intro-text">
+                Welcome to Hansol Creative, an independent studio dedicated to building clever, brain-stimulating puzzle games. 
+                <strong>Number Crush</strong> is our very first release—carefully engineered to provide both a relaxing escape and a satisfying intellectual challenge. 
+                This marks the beginning of our journey, and we are committed to delivering high-quality updates and new titles in the future.
+            </p>
+
+            <div class="button-group">
+                <a href="https://play.google.com/store/apps/details?id=com.HansolCreative.NumberBlocks" target="_blank" class="btn-store btn-play">
+                    <svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
+                    <div>
+                        <span class="btn-subtitle">GET IT ON</span>
+                        <span class="btn-title">Google Play</span>
+                    </div>
+                </a>
+
+                <div class="btn-store btn-apple" title="Currently in development">
+                    <svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+                    <div>
+                        <span class="btn-subtitle">App Store</span>
+                        <span class="btn-title">Coming Soon</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <h3 class="section-title">Development Roadmap</h3>
+        <p style="text-align: center; color: var(--text-muted); margin-top: -1.5rem; margin-bottom: 2rem;">
+            We are continuously expanding the Number Crush universe. Here is a sneak peek at what’s next:
+        </p>
+        <div class="roadmap-container">
+            <div class="roadmap-card">
+                <h4>🏆 Achievement System</h4>
+                <p>Track your puzzle-solving milestones, unlock special badges, and show off your progression as you master the game.</p>
+            </div>
+            <div class="roadmap-card" style="border-left-color: var(--accent-color);">
+                <h4>🗺️ Adventure Mode</h4>
+                <p>Embark on a brand-new journey featuring thematic levels, unique mechanics, and progressively challenging stages.</p>
+            </div>
         </div>
-    </section>
+
+        <h3 class="section-title">Gameplay Preview</h3>
+        <section class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/KLA-umXe1Bs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </section>
+
+        <h3 class="section-title">In-Game Screenshots</h3>
+        <section class="gallery">
+            <img src="resources/Store_00001.png" alt="Number Crush Screenshot">
+            <img src="resources/Store_00002.png" alt="Number Crush Screenshot">
+            <img src="resources/Store_00003.png" alt="Number Crush Screenshot">
+            <img src="resources/Store_00004.png" alt="Number Crush Screenshot">
+            <img src="resources/Store_00005.png" alt="Number Crush Screenshot">
+        </section>
+
+    </main>
 
     <footer>
         <p>
