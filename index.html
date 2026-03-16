@@ -653,16 +653,16 @@
         <div class="hero-card">
           <div class="hero-top">
             <div>
-              <span class="eyebrow">Indie Game Studio</span>
-              <h2>Three games, one unified showcase.</h2>
+              <span class="eyebrow">Solo Indie Game Studio</span>
+              <h2>Independent games, carefully built from the ground up.</h2>
               <p class="hero-copy">
-                상단에서는 게임을 좌우로 넘기고, 아래에서는 선택된 게임의 상세 내용을 보여주는 구조입니다.
-                각 게임은 같은 템플릿을 공유하고, 영상이나 스토어 링크가 없으면 해당 영역만 자동으로 비워집니다.
+                Hansol Creative는 한 사람이 기획, 개발, 디자인 디렉션을 직접 이끌어 만드는 인디 게임 스튜디오입니다.
+                숫자 퍼즐, 단어 퍼즐, 메신저형 추리 게임처럼 서로 다른 결의 프로젝트를 하나의 일관된 완성도로 선보이는 것을 목표로 합니다.
               </p>
               <div class="hero-meta">
-                <span class="meta-pill">공통 구조</span>
-                <span class="meta-pill">버튼 + 스와이프 지원</span>
-                <span class="meta-pill">옵션형 Preview 섹션</span>
+                <span class="meta-pill">Solo Developer</span>
+                <span class="meta-pill">Puzzle &amp; Story Games</span>
+                <span class="meta-pill">Crafted with Care</span>
               </div>
             </div>
           </div>
@@ -675,7 +675,7 @@
         <div class="section-head">
           <div>
             <h3>Featured Games</h3>
-            <p>좌우 버튼 또는 터치 드래그로 게임을 전환할 수 있습니다.</p>
+            <p>현재 진행 중인 프로젝트와 공개된 타이틀을 한곳에서 살펴볼 수 있습니다.</p>
           </div>
         </div>
 
@@ -701,7 +701,7 @@
 
         <div class="panel">
           <h3>Roadmap / Notes</h3>
-          <p class="panel-desc">선택된 게임 기준의 추가 예정 내용 또는 상태 메모입니다.</p>
+          <p class="panel-desc">선택된 게임의 핵심 방향과 다음 업데이트 계획을 정리했습니다.</p>
           <div class="roadmap-list" id="roadmapList"></div>
         </div>
       </div>
@@ -711,13 +711,13 @@
       <div class="panel media-stack">
         <div>
           <h3>Preview</h3>
-          <p class="panel-desc">영상이 있으면 임베드하고, 없으면 준비 중 상태를 보여줍니다.</p>
+          <p class="panel-desc">공개된 트레일러, 플레이 영상, 또는 데모 프리뷰를 확인할 수 있습니다.</p>
           <div id="previewArea"></div>
         </div>
 
         <div>
           <h3>Screenshots</h3>
-          <p class="panel-desc">이미지가 있으면 가로 스크롤 형태로 표시됩니다.</p>
+          <p class="panel-desc">아트워크, UI, 플레이 장면 등 시각 자료를 순서대로 둘러볼 수 있습니다.</p>
           <div class="gallery" id="screenshotGallery"></div>
         </div>
       </div>
@@ -748,7 +748,7 @@
           '숫자를 조합하고 흐름을 읽으며 점수를 확장해 나가는 퍼즐 게임입니다. 현재 가장 먼저 공개된 타이틀이며, 스토어 링크와 프리뷰 영상이 준비되어 있습니다.',
         heroImage: 'resources/GrandLaunch.png',
         heroAlt: 'Number Crush banner',
-        heroCaption: '대표 배너 이미지',
+        heroCaption: '현재 공개 중인 대표 아트워크',
         playStoreUrl: 'https://play.google.com/store/apps/details?id=com.HansolCreative.NumberBlocks',
         appStoreUrl: '',
         features: [
@@ -784,7 +784,7 @@
           '단어를 카테고리별로 묶고, 쉽게 읽히는 인터페이스와 편안한 진행감을 목표로 하는 퍼즐 게임입니다. 현재 개발 중인 상태이며 자료가 준비되는 대로 스토어 링크와 미리보기를 연결하면 됩니다.',
         heroImage: 'resources/placeholder-wordbuddy.png',
         heroAlt: '낱말짝궁 placeholder image',
-        heroCaption: '현재는 임시 대표 이미지 경로입니다.',
+        heroCaption: '개발 중인 타이틀의 대표 비주얼이 들어갈 영역',
         playStoreUrl: '',
         appStoreUrl: '',
         features: [
@@ -799,33 +799,6 @@
         preview: null,
         screenshots: [],
         tags: ['Korean', 'Word Match', 'Senior Target', 'Casual']
-      },
-      {
-        id: 'mystery-talk',
-        badge: 'Concept / Prototype',
-        badgeType: 'accent',
-        category: 'Story Mystery',
-        title: '추리Talk',
-        subtitle: '톡 기반 원격 의뢰형 추리 게임',
-        description:
-          '의뢰인과의 채팅, 전달받은 증거, 원격 서비스 조작 등을 통해 사건을 풀어가는 서사형 추리 게임입니다. 에피소드 단위로 확장 가능하고 선택지와 플래그 중심의 진행 구조를 갖습니다.',
-        heroImage: 'resources/placeholder-suritalk.png',
-        heroAlt: '추리Talk placeholder image',
-        heroCaption: '대표 비주얼을 연결하면 상단 카드에 자동 반영됩니다.',
-        playStoreUrl: '',
-        appStoreUrl: '',
-        features: [
-          { icon: '💬', title: 'Chat-based interface', text: '메신저 UI 자체가 핵심 플레이 공간이 되는 설계.' },
-          { icon: '🕵️', title: 'Evidence-driven deduction', text: '첨부 자료, 내선, 원격 조작 등 사건 해결 단서를 단계적으로 탐색.' },
-          { icon: '🧠', title: 'Episode + flag system', text: '선택지, 조건 플래그, 힌트 구조를 확장하기 쉬운 형태.' }
-        ],
-        roadmap: [
-          { title: '📁 Episode File Format', text: '에피소드별 데이터 구조와 선택지 플래그 체계 정리.' },
-          { title: '📲 Interactive Messenger UX', text: '실제 톡을 보는 듯한 조작성과 몰입감 강화.' }
-        ],
-        preview: null,
-        screenshots: [],
-        tags: ['Mystery', 'Narrative', 'Messenger UI', 'Investigation']
       }
     ];
 
@@ -931,7 +904,7 @@
           </div>
         `;
       } else {
-        previewArea.innerHTML = `<div class="empty-media">Preview 준비 중</div>`;
+        previewArea.innerHTML = `<div class="empty-media">Preview coming soon.</div>`;
       }
 
       if (game.screenshots && game.screenshots.length > 0) {
@@ -942,7 +915,7 @@
           </figure>
         `).join('');
       } else {
-        screenshotGallery.innerHTML = `<div class="empty-media" style="width: 100%;">Screenshots 준비 중</div>`;
+        screenshotGallery.innerHTML = `<div class="empty-media" style="width: 100%;">More visuals will be shared soon.</div>`;
       }
     }
 
