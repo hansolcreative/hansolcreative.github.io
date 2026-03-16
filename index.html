@@ -1,372 +1,1014 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hansol Creative | Indie Game Studio</title>
-    <style>
-        :root {
-            --bg-color: #f8fafc;
-            --surface-color: #ffffff;
-            --primary-color: #4f46e5;
-            --primary-hover: #4338ca;
-            --accent-color: #ec4899;
-            --text-dark: #0f172a;
-            --text-muted: #64748b;
-            --border-color: #e2e8f0;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hansol Creative | Indie Game Studio</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-soft: #f1f5f9;
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --accent: #ec4899;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --container: 1120px;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+    * { box-sizing: border-box; }
 
-        /* Header Style */
-        header {
-            text-align: center;
-            padding: 4rem 1rem 2rem;
-            background-color: var(--surface-color);
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 3rem;
-        }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(180deg, #f8fafc 0%, #f5f7fb 100%);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-        header h1 {
-            font-size: 2.8rem;
-            margin: 0;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
+    body {
+      min-height: 100vh;
+    }
 
-        header p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-top: 0.5rem;
-            font-weight: 500;
-        }
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-        /* Layout Container */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-        /* Section Titles */
-        .section-title {
-            font-size: 1.8rem;
-            color: var(--text-dark);
-            text-align: center;
-            margin: 4rem 0 2rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
+    .container {
+      width: min(var(--container), calc(100% - 32px));
+      margin: 0 auto;
+    }
 
-        /* Showcase Section (Hero) */
-        .showcase {
-            background-color: var(--surface-color);
-            border-radius: 20px;
-            padding: 3rem;
-            text-align: center;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            border: 1px solid var(--border-color);
-            margin-bottom: 4rem;
-        }
+    header {
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
 
-        .badge {
-            display: inline-block;
-            background-color: #eef2ff;
-            color: var(--primary-color);
-            padding: 0.4rem 1rem;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1.5rem;
-        }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px 0;
+    }
 
-        .showcase h2 {
-            font-size: 2.5rem;
-            margin: 0 0 1.5rem 0;
-            font-weight: 800;
-        }
+    .brand h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-        /* Hero Image & Link Styles */
-        .hero-link {
-            display: block;
-            margin-bottom: 2.5rem;
-            border-radius: 12px;
-            text-decoration: none;
-            /* 링크 클릭 시 파란 테두리 방지 */
-            outline: none; 
-        }
+    .brand p {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
 
-        .hero-image {
-            width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: block;
-        }
+    .hero {
+      padding: 48px 0 28px;
+    }
 
-        /* 마우스 오버 시 이미지 위로 떠오르는 효과 */
-        .hero-link:hover .hero-image {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.18);
-        }
+    .hero-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
 
-        .intro-text {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            max-width: 750px;
-            margin: 0 auto 2.5rem;
-        }
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
 
-        /* Store Buttons */
-        .button-group {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      background: #eef2ff;
+      color: var(--primary);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
 
-        .btn-store {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.8rem 1.8rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.2s ease;
-            min-width: 220px;
-        }
+    .hero h2 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+    }
 
-        .btn-play {
-            background-color: #000000;
-            color: #ffffff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
+    .hero-copy {
+      margin: 12px 0 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
 
-        .btn-play:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-        }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
 
-        .btn-apple {
-            background-color: #f1f5f9;
-            color: #94a3b8;
-            cursor: not-allowed;
-            border: 1px solid var(--border-color);
-        }
+    .meta-pill {
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
 
-        .btn-store svg {
-            width: 24px;
-            height: 24px;
-            margin-right: 10px;
-            fill: currentColor;
-        }
+    .carousel-section {
+      padding: 8px 0 18px;
+    }
 
-        .btn-subtitle {
-            display: block;
-            font-size: 0.75rem;
-            font-weight: 400;
-            opacity: 0.8;
-            text-align: left;
-        }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
 
-        .btn-title {
-            display: block;
-            text-align: left;
-            line-height: 1.2;
-        }
+    .section-head h3 {
+      margin: 0;
+      font-size: 1.35rem;
+      letter-spacing: -0.03em;
+    }
 
-        /* Video Section */
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            border: 1px solid var(--border-color);
-        }
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
 
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-        }
+    .carousel-shell {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+    }
 
-        /* Roadmap Section */
-        .roadmap-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 4rem;
-        }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.35s ease;
+      touch-action: pan-y;
+      user-select: none;
+    }
 
-        .roadmap-card {
-            background-color: var(--surface-color);
-            padding: 2rem;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            border-left: 4px solid var(--primary-color);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            transition: transform 0.2s;
-        }
+    .slide {
+      min-width: 100%;
+      padding: 8px 0;
+    }
 
-        .roadmap-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-        }
+    .game-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      gap: 24px;
+      align-items: stretch;
+    }
 
-        .roadmap-card h4 {
-            margin: 0 0 0.5rem 0;
-            font-size: 1.3rem;
-            color: var(--text-dark);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+    .game-left {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
 
-        .roadmap-card p {
-            margin: 0;
-            color: var(--text-muted);
-            font-size: 1rem;
-        }
+    .status-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
 
-        /* Screenshots Section */
-        .gallery {
-            display: flex;
-            overflow-x: auto;
-            gap: 1.5rem;
-            padding: 1rem 0 2rem;
-            scrollbar-width: thin;
-        }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
 
-        .gallery::-webkit-scrollbar { height: 8px; }
-        .gallery::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        
-        .gallery img {
-            height: 420px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-            border: 1px solid var(--border-color);
-        }
+    .badge.primary {
+      background: #eef2ff;
+      color: var(--primary);
+      border-color: #dbe4ff;
+    }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 3rem 1rem;
-            background-color: var(--surface-color);
-            color: var(--text-muted);
-            margin-top: 5rem;
-            border-top: 1px solid var(--border-color);
-        }
+    .badge.accent {
+      background: #fdf2f8;
+      color: #be185d;
+      border-color: #fbcfe8;
+    }
 
-        footer a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 500;
-        }
+    .game-title {
+      margin: 0;
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
 
-        @media (max-width: 768px) {
-            .showcase { padding: 2rem 1.5rem; }
-            header h1 { font-size: 2.2rem; }
-            .btn-store { width: 100%; }
-        }
-    </style>
+    .game-subtitle {
+      margin: 10px 0 0;
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .game-description {
+      margin: 16px 0 20px;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      padding: 8px 12px;
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 0.88rem;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: auto;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-width: 180px;
+      min-height: 48px;
+      padding: 12px 18px;
+      border-radius: 14px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+      color: white;
+      box-shadow: 0 10px 24px rgba(79, 70, 229, 0.24);
+    }
+
+    .btn-secondary {
+      background: var(--surface-soft);
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .btn-disabled {
+      background: #f8fafc;
+      color: #94a3b8;
+      border-color: var(--border);
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .visual-panel {
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      min-height: 100%;
+    }
+
+    .visual-image {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #fff;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+    }
+
+    .visual-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      aspect-ratio: 16 / 10;
+    }
+
+    .visual-caption {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin: 0;
+    }
+
+    .carousel-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .nav-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 1.2rem;
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+    }
+
+    .nav-btn:hover {
+      background: var(--surface-soft);
+    }
+
+    .dots {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #cbd5e1;
+      border: 0;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .dot.active {
+      width: 28px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+    }
+
+    .details {
+      padding: 12px 0 10px;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
+    .panel h3 {
+      margin: 0 0 8px;
+      font-size: 1.35rem;
+      letter-spacing: -0.03em;
+    }
+
+    .panel-desc {
+      margin: 0 0 18px;
+      color: var(--muted);
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .feature-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px 16px;
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+
+    .feature-icon {
+      flex: 0 0 auto;
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: white;
+      border: 1px solid var(--border);
+      font-size: 1rem;
+    }
+
+    .feature-item h4 {
+      margin: 0 0 4px;
+      font-size: 1rem;
+    }
+
+    .feature-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .media-stack {
+      display: grid;
+      gap: 20px;
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: #000;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .empty-media {
+      padding: 28px 20px;
+      border-radius: 18px;
+      border: 1px dashed var(--border);
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      color: var(--muted);
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .gallery {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      scrollbar-width: thin;
+    }
+
+    .gallery::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .gallery::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 10px;
+    }
+
+    .gallery figure {
+      min-width: 220px;
+      margin: 0;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+    }
+
+    .gallery img {
+      width: 220px;
+      height: 390px;
+      object-fit: cover;
+      background: #fff;
+    }
+
+    .gallery figcaption {
+      padding: 10px 12px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .roadmap-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .roadmap-item {
+      padding: 16px;
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary);
+      border-radius: 16px;
+    }
+
+    .roadmap-item h4 {
+      margin: 0 0 6px;
+      font-size: 1rem;
+    }
+
+    .roadmap-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    footer {
+      margin-top: 40px;
+      border-top: 1px solid var(--border);
+      background: rgba(255,255,255,0.8);
+    }
+
+    .footer-inner {
+      padding: 28px 0 42px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .footer-inner a {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    @media (max-width: 980px) {
+      .game-card,
+      .details-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-top {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding-top: 28px;
+      }
+
+      .hero-card,
+      .game-card,
+      .panel {
+        padding: 18px;
+        border-radius: 20px;
+      }
+
+      .header-inner {
+        padding: 14px 0;
+      }
+
+      .brand h1 {
+        font-size: 1.25rem;
+      }
+
+      .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .gallery figure,
+      .gallery img {
+        width: 180px;
+        min-width: 180px;
+        height: 320px;
+      }
+    }
+  </style>
 </head>
 <body>
-
-    <header>
+  <header>
+    <div class="container header-inner">
+      <div class="brand">
         <h1>Hansol Creative</h1>
-        <p>Polished Puzzles, Premium Experiences.</p>
-    </header>
+        <p>Polished puzzles, premium experiences.</p>
+      </div>
+    </div>
+  </header>
 
-    <main class="container">
-        
-        <section class="showcase">
-            <span class="badge">Our Debut Title</span>
-            <h2>Number Crush</h2>
-            
-            <a href="https://play.google.com/store/apps/details?id=com.HansolCreative.NumberBlocks" target="_blank" class="hero-link" title="Download Number Crush on Google Play">
-                <img src="resources/GrandLaunch.png" alt="Number Crush Official Banner" class="hero-image">
-            </a>
-            
-            <p class="intro-text">
-                Welcome to Hansol Creative, an independent studio dedicated to building clever, brain-stimulating puzzle games. 
-                <strong>Number Crush</strong> is our very first release—carefully engineered to provide both a relaxing escape and a satisfying intellectual challenge. 
-                This marks the beginning of our journey, and we are committed to delivering high-quality updates and new titles in the future.
-            </p>
-
-            <div class="button-group">
-                <a href="https://play.google.com/store/apps/details?id=com.HansolCreative.NumberBlocks" target="_blank" class="btn-store btn-play">
-                    <svg viewBox="0 0 512 512"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
-                    <div>
-                        <span class="btn-subtitle">GET IT ON</span>
-                        <span class="btn-title">Google Play</span>
-                    </div>
-                </a>
-
-                <div class="btn-store btn-apple" title="Currently in development">
-                    <svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-                    <div>
-                        <span class="btn-subtitle">App Store</span>
-                        <span class="btn-title">Coming Soon</span>
-                    </div>
-                </div>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <div class="hero-top">
+            <div>
+              <span class="eyebrow">Indie Game Studio</span>
+              <h2>Three games, one unified showcase.</h2>
+              <p class="hero-copy">
+                상단에서는 게임을 좌우로 넘기고, 아래에서는 선택된 게임의 상세 내용을 보여주는 구조입니다.
+                각 게임은 같은 템플릿을 공유하고, 영상이나 스토어 링크가 없으면 해당 영역만 자동으로 비워집니다.
+              </p>
+              <div class="hero-meta">
+                <span class="meta-pill">공통 구조</span>
+                <span class="meta-pill">버튼 + 스와이프 지원</span>
+                <span class="meta-pill">옵션형 Preview 섹션</span>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <h3 class="section-title">Development Roadmap</h3>
-        <p style="text-align: center; color: var(--text-muted); margin-top: -1.5rem; margin-bottom: 2rem;">
-            We are continuously expanding the Number Crush universe. Here is a sneak peek at what’s next:
-        </p>
-        <div class="roadmap-container">
-            <div class="roadmap-card">
-                <h4>🏆 Achievement System</h4>
-                <p>Track your puzzle-solving milestones, unlock special badges, and show off your progression as you master the game.</p>
-            </div>
-            <div class="roadmap-card" style="border-left-color: var(--accent-color);">
-                <h4>🗺️ Adventure Mode</h4>
-                <p>Embark on a brand-new journey featuring thematic levels, unique mechanics, and progressively challenging stages.</p>
-            </div>
+    <section class="carousel-section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h3>Featured Games</h3>
+            <p>좌우 버튼 또는 터치 드래그로 게임을 전환할 수 있습니다.</p>
+          </div>
         </div>
 
-        <h3 class="section-title">Gameplay Preview</h3>
-        <section class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/KLA-umXe1Bs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </section>
+        <div class="carousel-shell">
+          <div class="carousel-track" id="carouselTrack"></div>
+        </div>
 
-        <h3 class="section-title">In-Game Screenshots</h3>
-        <section class="gallery">
-            <img src="resources/Store_00001.png" alt="Number Crush Screenshot">
-            <img src="resources/Store_00002.png" alt="Number Crush Screenshot">
-            <img src="resources/Store_00003.png" alt="Number Crush Screenshot">
-            <img src="resources/Store_00004.png" alt="Number Crush Screenshot">
-            <img src="resources/Store_00005.png" alt="Number Crush Screenshot">
-        </section>
+        <div class="carousel-controls">
+          <button class="nav-btn" id="prevBtn" aria-label="이전 게임">‹</button>
+          <div class="dots" id="dots"></div>
+          <button class="nav-btn" id="nextBtn" aria-label="다음 게임">›</button>
+        </div>
+      </div>
+    </section>
 
-    </main>
+    <section class="details">
+      <div class="container details-grid">
+        <div class="panel">
+          <h3 id="detailsTitle">Game Details</h3>
+          <p class="panel-desc" id="detailsSubtitle"></p>
+          <div class="feature-list" id="featureList"></div>
+        </div>
 
-    <footer>
-        <p>
-            <a href="privacy-policy.html">Privacy Policy</a> | 
-            Contact: <a href="mailto:hansolcreative@gmail.com">hansolcreative@gmail.com</a>
-        </p>
-        <p>&copy; 2026 Hansol Creative. All rights reserved.</p>
-    </footer>
+        <div class="panel">
+          <h3>Roadmap / Notes</h3>
+          <p class="panel-desc">선택된 게임 기준의 추가 예정 내용 또는 상태 메모입니다.</p>
+          <div class="roadmap-list" id="roadmapList"></div>
+        </div>
+      </div>
+    </section>
 
+    <section class="container" style="padding-top: 14px;">
+      <div class="panel media-stack">
+        <div>
+          <h3>Preview</h3>
+          <p class="panel-desc">영상이 있으면 임베드하고, 없으면 준비 중 상태를 보여줍니다.</p>
+          <div id="previewArea"></div>
+        </div>
+
+        <div>
+          <h3>Screenshots</h3>
+          <p class="panel-desc">이미지가 있으면 가로 스크롤 형태로 표시됩니다.</p>
+          <div class="gallery" id="screenshotGallery"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <p>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        &nbsp;|&nbsp;
+        Contact: <a href="mailto:hansolcreative@gmail.com">hansolcreative@gmail.com</a>
+      </p>
+      <p>© 2026 Hansol Creative. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const games = [
+      {
+        id: 'number-crush',
+        badge: 'Released',
+        badgeType: 'primary',
+        category: 'Puzzle',
+        title: 'Number Crush',
+        subtitle: '기존 Number Crush / Number Blocks 계열 소개용 슬롯',
+        description:
+          '숫자를 조합하고 흐름을 읽으며 점수를 확장해 나가는 퍼즐 게임입니다. 현재 가장 먼저 공개된 타이틀이며, 스토어 링크와 프리뷰 영상이 준비되어 있습니다.',
+        heroImage: 'resources/GrandLaunch.png',
+        heroAlt: 'Number Crush banner',
+        heroCaption: '대표 배너 이미지',
+        playStoreUrl: 'https://play.google.com/store/apps/details?id=com.HansolCreative.NumberBlocks',
+        appStoreUrl: '',
+        features: [
+          { icon: '🧩', title: 'Relaxing but deep', text: '가볍게 시작할 수 있지만 반복 플레이에서 전략성이 살아나는 구조.' },
+          { icon: '📈', title: 'Score progression', text: '고득점을 위한 운영과 연쇄 구성에 집중한 설계.' },
+          { icon: '✨', title: 'Polished presentation', text: '깔끔한 UI와 스토어 공개를 기준으로 정리된 대표 작품.' }
+        ],
+        roadmap: [
+          { title: '🏆 Achievement System', text: '기록, 달성 배지, 진행도 추적 기능 추가 예정.' },
+          { title: '🗺️ Adventure Mode', text: '새 규칙과 단계형 진행이 있는 확장 모드 기획 중.' }
+        ],
+        preview: {
+          type: 'youtube',
+          value: 'https://www.youtube.com/embed/KLA-umXe1Bs'
+        },
+        screenshots: [
+          { src: 'resources/Store_00001.png', caption: 'Gameplay screenshot 01' },
+          { src: 'resources/Store_00002.png', caption: 'Gameplay screenshot 02' },
+          { src: 'resources/Store_00003.png', caption: 'Gameplay screenshot 03' },
+          { src: 'resources/Store_00004.png', caption: 'Gameplay screenshot 04' },
+          { src: 'resources/Store_00005.png', caption: 'Gameplay screenshot 05' }
+        ],
+        tags: ['Released', 'Numbers', 'Score Attack', 'Mobile Puzzle']
+      },
+      {
+        id: 'word-buddy',
+        badge: 'In Development',
+        badgeType: 'accent',
+        category: 'Word Puzzle',
+        title: '낱말짝궁',
+        subtitle: '시니어 친화형 단어 분류 / 짝맞추기 퍼즐',
+        description:
+          '단어를 카테고리별로 묶고, 쉽게 읽히는 인터페이스와 편안한 진행감을 목표로 하는 퍼즐 게임입니다. 현재 개발 중인 상태이며 자료가 준비되는 대로 스토어 링크와 미리보기를 연결하면 됩니다.',
+        heroImage: 'resources/placeholder-wordbuddy.png',
+        heroAlt: '낱말짝궁 placeholder image',
+        heroCaption: '현재는 임시 대표 이미지 경로입니다.',
+        playStoreUrl: '',
+        appStoreUrl: '',
+        features: [
+          { icon: '🔤', title: 'Word category gameplay', text: '단어 묶기, 분류, 직관적 퍼즐 흐름에 맞춘 구조.' },
+          { icon: '👵', title: 'Senior-friendly UX', text: '큰 타이포, 명확한 버튼, 부담 적은 이펙트 중심.' },
+          { icon: '🌿', title: 'Calm visual tone', text: '편안하고 따뜻한 감성의 UI 방향성.' }
+        ],
+        roadmap: [
+          { title: '📚 Stage Expansion', text: '다양한 카테고리와 캠페인형 스테이지 확장.' },
+          { title: '💡 Hint / Assist UX', text: '힌트, 자동완성, 트레이 확장 등 보조 기능 고도화.' }
+        ],
+        preview: null,
+        screenshots: [],
+        tags: ['Korean', 'Word Match', 'Senior Target', 'Casual']
+      },
+      {
+        id: 'mystery-talk',
+        badge: 'Concept / Prototype',
+        badgeType: 'accent',
+        category: 'Story Mystery',
+        title: '추리Talk',
+        subtitle: '톡 기반 원격 의뢰형 추리 게임',
+        description:
+          '의뢰인과의 채팅, 전달받은 증거, 원격 서비스 조작 등을 통해 사건을 풀어가는 서사형 추리 게임입니다. 에피소드 단위로 확장 가능하고 선택지와 플래그 중심의 진행 구조를 갖습니다.',
+        heroImage: 'resources/placeholder-suritalk.png',
+        heroAlt: '추리Talk placeholder image',
+        heroCaption: '대표 비주얼을 연결하면 상단 카드에 자동 반영됩니다.',
+        playStoreUrl: '',
+        appStoreUrl: '',
+        features: [
+          { icon: '💬', title: 'Chat-based interface', text: '메신저 UI 자체가 핵심 플레이 공간이 되는 설계.' },
+          { icon: '🕵️', title: 'Evidence-driven deduction', text: '첨부 자료, 내선, 원격 조작 등 사건 해결 단서를 단계적으로 탐색.' },
+          { icon: '🧠', title: 'Episode + flag system', text: '선택지, 조건 플래그, 힌트 구조를 확장하기 쉬운 형태.' }
+        ],
+        roadmap: [
+          { title: '📁 Episode File Format', text: '에피소드별 데이터 구조와 선택지 플래그 체계 정리.' },
+          { title: '📲 Interactive Messenger UX', text: '실제 톡을 보는 듯한 조작성과 몰입감 강화.' }
+        ],
+        preview: null,
+        screenshots: [],
+        tags: ['Mystery', 'Narrative', 'Messenger UI', 'Investigation']
+      }
+    ];
+
+    const track = document.getElementById('carouselTrack');
+    const dots = document.getElementById('dots');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    const detailsTitle = document.getElementById('detailsTitle');
+    const detailsSubtitle = document.getElementById('detailsSubtitle');
+    const featureList = document.getElementById('featureList');
+    const roadmapList = document.getElementById('roadmapList');
+    const previewArea = document.getElementById('previewArea');
+    const screenshotGallery = document.getElementById('screenshotGallery');
+
+    let currentIndex = 0;
+    let startX = 0;
+    let currentTranslate = 0;
+    let isDragging = false;
+
+    function storeButton(label, url, primary = false) {
+      if (!url) {
+        return `<div class="btn ${primary ? 'btn-disabled' : 'btn-secondary btn-disabled'}">${label}</div>`;
+      }
+
+      return `<a class="btn ${primary ? 'btn-primary' : 'btn-secondary'}" href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+    }
+
+    function renderSlides() {
+      track.innerHTML = games.map((game) => `
+        <article class="slide">
+          <div class="game-card">
+            <div class="game-left">
+              <div class="status-row">
+                <span class="badge ${game.badgeType}">${game.badge}</span>
+                <span class="badge">${game.category}</span>
+              </div>
+              <h2 class="game-title">${game.title}</h2>
+              <p class="game-subtitle">${game.subtitle}</p>
+              <p class="game-description">${game.description}</p>
+              <div class="tag-list">
+                ${game.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+              </div>
+              <div class="action-row">
+                ${storeButton('Google Play', game.playStoreUrl, true)}
+                ${storeButton('App Store', game.appStoreUrl, false)}
+              </div>
+            </div>
+            <div class="visual-panel">
+              <div class="visual-image">
+                <img src="${game.heroImage}" alt="${game.heroAlt}">
+              </div>
+              <p class="visual-caption">${game.heroCaption}</p>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function renderDots() {
+      dots.innerHTML = games.map((_, index) => `
+        <button class="dot ${index === currentIndex ? 'active' : ''}" data-index="${index}" aria-label="${index + 1}번 게임 보기"></button>
+      `).join('');
+
+      dots.querySelectorAll('.dot').forEach((dot) => {
+        dot.addEventListener('click', () => {
+          goToSlide(Number(dot.dataset.index));
+        });
+      });
+    }
+
+    function renderDetails(game) {
+      detailsTitle.textContent = game.title;
+      detailsSubtitle.textContent = game.subtitle;
+
+      featureList.innerHTML = game.features.map((item) => `
+        <div class="feature-item">
+          <div class="feature-icon">${item.icon}</div>
+          <div>
+            <h4>${item.title}</h4>
+            <p>${item.text}</p>
+          </div>
+        </div>
+      `).join('');
+
+      roadmapList.innerHTML = game.roadmap.map((item) => `
+        <div class="roadmap-item">
+          <h4>${item.title}</h4>
+          <p>${item.text}</p>
+        </div>
+      `).join('');
+
+      if (game.preview && game.preview.type === 'youtube') {
+        previewArea.innerHTML = `
+          <div class="video-wrapper">
+            <iframe src="${game.preview.value}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        `;
+      } else if (game.preview && game.preview.type === 'image') {
+        previewArea.innerHTML = `
+          <div class="visual-image">
+            <img src="${game.preview.value}" alt="${game.title} preview image">
+          </div>
+        `;
+      } else {
+        previewArea.innerHTML = `<div class="empty-media">Preview 준비 중</div>`;
+      }
+
+      if (game.screenshots && game.screenshots.length > 0) {
+        screenshotGallery.innerHTML = game.screenshots.map((shot) => `
+          <figure>
+            <img src="${shot.src}" alt="${shot.caption}">
+            <figcaption>${shot.caption}</figcaption>
+          </figure>
+        `).join('');
+      } else {
+        screenshotGallery.innerHTML = `<div class="empty-media" style="width: 100%;">Screenshots 준비 중</div>`;
+      }
+    }
+
+    function updateCarouselPosition(animated = true) {
+      if (!animated) {
+        track.style.transition = 'none';
+      } else {
+        track.style.transition = 'transform 0.35s ease';
+      }
+      currentTranslate = -currentIndex * 100;
+      track.style.transform = `translateX(${currentTranslate}%)`;
+      renderDots();
+      renderDetails(games[currentIndex]);
+    }
+
+    function goToSlide(index) {
+      currentIndex = (index + games.length) % games.length;
+      updateCarouselPosition(true);
+    }
+
+    function nextSlide() {
+      goToSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+      goToSlide(currentIndex - 1);
+    }
+
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+
+    track.addEventListener('pointerdown', (e) => {
+      isDragging = true;
+      startX = e.clientX;
+      track.style.transition = 'none';
+    });
+
+    window.addEventListener('pointermove', (e) => {
+      if (!isDragging) return;
+      const deltaX = e.clientX - startX;
+      const width = track.offsetWidth || 1;
+      const deltaPercent = (deltaX / width) * 100;
+      track.style.transform = `translateX(calc(${currentTranslate}% + ${deltaPercent}%))`;
+    });
+
+    window.addEventListener('pointerup', (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      const deltaX = e.clientX - startX;
+
+      if (deltaX < -50) {
+        nextSlide();
+      } else if (deltaX > 50) {
+        prevSlide();
+      } else {
+        updateCarouselPosition(true);
+      }
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+
+    renderSlides();
+    updateCarouselPosition(true);
+  </script>
 </body>
 </html>
