@@ -1,32 +1,61 @@
 const games = [
   {
-    "id": "word-buddy",
-    "badgeType": "accent",
+    "id": "wordy-buddy",
+    "badgeType": "primary",
     "category": { "ko": "단어 퍼즐", "en": "Word Puzzle" },
-    "badge": { "ko": "개발 중", "en": "In Development" },
-    "title": { "ko": "낱말짝궁", "en": "Word Buddy" },
-    "subtitle": { "ko": "시니어 친화형 단어 분류 / 짝맞추기 퍼즐", "en": "Senior-friendly word classification puzzle" },
+    "badge": { "ko": "출시됨", "en": "Released" },
+    "title": { "ko": "낱말짝꿍", "en": "Wordy Buddy" },
+    "subtitle": { "ko": "시니어를 위한 테마별 단어 짝맞추기 퍼즐", "en": "Themed word matching puzzle for everyone" },
     "description": {
-      "ko": "단어를 카테고리별로 묶고, 쉽게 읽히는 인터페이스와 편안한 진행감을 목표로 하는 퍼즐 게임입니다.",
-      "en": "A word puzzle game focused on grouping words by category with a clean interface and relaxing gameplay."
+      "ko": "단어를 카테고리별로 묶으며 두뇌를 자극하는 퍼즐 게임입니다. 500개 이상의 방대한 스테이지와 특별한 복주머니 보상이 기다립니다.",
+      "en": "A brain-stimulating puzzle game where you group words by category. Over 500 stages and special lucky bag rewards await you."
     },
-    "heroImage": "resources/word-buddy/placeholder.png",
-    "heroAlt": "낱말짝궁 placeholder",
-    "heroCaption": { "ko": "개발 중인 타이틀의 대표 비주얼", "en": "Key visual for the title in development" },
-    "playStoreUrl": "",
+    "heroImage": "resources/word-buddy/graphics.jpeg",
+    "heroAlt": "낱말짝꿍 Wordy Buddy cover",
+    "heroCaption": { "ko": "낱말짝꿍: 쉽고 재미있는 단어 찾기", "en": "Wordy Buddy: Fun and Easy Word Search" },
+    "playStoreUrl": "https://play.google.com/store/apps/details?id=com.HansolCreative.WordMatch",
     "appStoreUrl": "",
     "features": [
-      { "icon": "🔤", "title": { "ko": "단어 카테고리 플레이", "en": "Category Gameplay" }, "text": { "ko": "직관적인 단어 묶기 및 분류 시스템", "en": "Intuitive word grouping and classification system" } },
-      { "icon": "👵", "title": { "ko": "시니어 친화 UX", "en": "Senior-friendly UX" }, "text": { "ko": "큰 글씨와 명확한 버튼, 부담 없는 이펙트", "en": "Large typography and clear buttons for easy access" } }
+      { 
+        "icon": "📚", 
+        "title": { "ko": "주제별 팩", "en": "Thematic Packs" }, 
+        "text": { "ko": "상식, 상호명 등 다양한 주제로 즐기는 단어 묶기", "en": "Group words through various packs like general knowledge and brands" } 
+      },
+      { 
+        "icon": "🕹️", 
+        "title": { "ko": "500개 이상의 단계", "en": "500+ Stages" }, 
+        "text": { "ko": "풍부한 유즈케이스와 끊임없는 도전 과제", "en": "A vast collection of levels and constant challenges" } 
+      },
+      { 
+        "icon": "💰", 
+        "title": { "ko": "복주머니 시스템", "en": "Lucky Bag System" }, 
+        "text": { "ko": "플레이 중 획득하는 특별한 보상과 행운", "en": "Special rewards and luck earned during gameplay" } 
+      }
     ],
     "roadmap": [
-      { "title": { "ko": "스테이지 확장", "en": "Stage Expansion" }, "text": { "ko": "다양한 카테고리와 캠페인 업데이트", "en": "New categories and campaign updates" } }
+      { 
+        "title": { "ko": "업적 시스템", "en": "Achievement System" }, 
+        "text": { "ko": "진행도 확인 및 특별 칭호 획득 (구현 예정)", "en": "Track progress and earn special titles (Coming Soon)" } 
+      },
+      { 
+        "title": { "ko": "유저 정보 관리", "en": "User Profile" }, 
+        "text": { "ko": "개인 프로필 및 진행 경로 저장 (구현 예정)", "en": "Save personal profile and progress path (Coming Soon)" } 
+      }
     ],
     "preview": null,
-    "screenshots": [],
+    // "preview": {
+      // "type": "youtube",
+      // "value": "https://www.youtube.com/embed/K49HGn7lRpE"
+    // },
+    "screenshots": [
+      { "src": "resources/word-buddy/Shot00001.jpeg", "caption": "Gameplay 01" },
+      { "src": "resources/word-buddy/Shot00002.jpeg", "caption": "Gameplay 02" },
+      { "src": "resources/word-buddy/Shot00004.jpeg", "caption": "Gameplay 03" },
+      { "src": "resources/word-buddy/Shot00005.jpeg", "caption": "Gameplay 04" },
+      { "src": "resources/word-buddy/Shot00006.jpeg", "caption": "Gameplay 05" }],
     "tags": {
-      "ko": ["한글", "낱말맞추기", "시니어", "캐주얼"],
-      "en": ["Korean", "Word Match", "Senior", "Casual"]
+      "ko": ["낱말짝꿍", "시니어퍼즐", "단어분류", "500스테이지"],
+      "en": ["Wordy Buddy", "Senior Puzzle", "Word Match", "500 Levels"]
     }
   },
   {

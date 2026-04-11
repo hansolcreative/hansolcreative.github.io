@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const screenshotGallery = document.getElementById('screenshotGallery');
 
   // I18N Setup
-  // Priority: 1. Manually saved lang, 2. Browser language (if ko, use ko, else en)
   let currentLang = localStorage.getItem('lang') || (navigator.language.startsWith('ko') ? 'ko' : 'en');
   
   const translations = {
@@ -26,10 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
       studioVision: "플레이어와 함께 성장하는 스튜디오",
       studioCopy: "기술적인 화려함보다는 플레이어의 목소리에 더 귀를 기울입니다.<br>한 명의 개발자가 만드는 작은 세상이지만, 그 안에서 느끼는 재미와 따뜻함은 누구나 선명하게 경험할 수 있도록 다듬고 또 다듬습니다.",
       contact: "문의:",
-      screenshots: "📸 스크린샷",
-      roadmap: "📅 로드맵",
-      features: "✨ 주요 특징",
-      previewTitle: "📺 영상 미리보기",
+      screenshots: "📸 스크린샷 갤러리",
+      roadmap: "📅 업데이트 로드맵",
+      features: "✨ 주요 특징 및 재미 요소",
+      previewTitle: "📺 비디오 프리뷰",
       emptyMedia: "준비 중입니다."
     },
     en: {
@@ -43,10 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
       studioVision: "A Studio Growing with Players",
       studioCopy: "We listen to the voices of players rather than focusing only on technical flair.<br>Crafted by a solo developer, we strive to deliver warmth and fun that anyone can clearly experience.",
       contact: "Contact:",
-      screenshots: "📸 Screenshots",
-      roadmap: "📅 Roadmap",
-      features: "✨ Key Features",
-      previewTitle: "📺 Visual Preview",
+      screenshots: "📸 Screenshot Gallery",
+      roadmap: "📅 Update Roadmap",
+      features: "✨ Key Features & Fun Factors",
+      previewTitle: "📺 Video Preview",
       emptyMedia: "Coming soon."
     }
   };
@@ -54,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateStaticUI() {
     document.title = currentLang === 'ko' ? "Hansol Creative | 인디 게임 스튜디오" : "Hansol Creative | Indie Game Studio";
     
-    // Select elements with data-t attribute
     document.querySelectorAll('[data-t]').forEach(el => {
       const key = el.getAttribute('data-t');
       if (translations[currentLang][key]) {
@@ -62,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Update body class for lang-specific styling if needed
     document.body.setAttribute('lang', currentLang);
   }
 
@@ -72,7 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateStaticUI();
     renderGrid();
     if (detailsArea.classList.contains('active')) {
-      // If details are open, refresh them
       const activeIdx = detailsArea.getAttribute('data-active-index');
       if (activeIdx !== null) showDetails(parseInt(activeIdx));
     }
@@ -87,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function storeButton(label, url, primary = false) {
     if (!url) return '';
-    return `<a class="btn ${primary ? 'btn-primary' : 'btn-secondary'}" href="${url}" target="_blank" rel="noopener noreferrer" style="flex: 1;">${label}</a>`;
+    return `<a class="btn ${primary ? 'btn-primary' : 'btn-secondary'}" href="${url}" target="_blank" rel="noopener noreferrer" style="width: 100%;">${label}</a>`;
   }
 
   function renderGrid() {
@@ -107,8 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="action-row">
             ${storeButton('Google Play', game.playStoreUrl, true)}
             ${storeButton('App Store', game.appStoreUrl, false)}
+            <button class="btn btn-detail" onclick="showDetails(${index})">${translations[currentLang].viewDetails}</button>
           </div>
-          <button class="btn-detail" onclick="showDetails(${index})">${translations[currentLang].viewDetails}</button>
         </div>
       </div>
     `).join('');
@@ -123,48 +119,47 @@ document.addEventListener('DOMContentLoaded', () => {
     detailBadge.innerHTML = `<span class="badge ${game.badgeType}">${game.badge[currentLang]}</span> <span class="badge">${game.category[currentLang]}</span>`;
 
     featureList.innerHTML = game.features.map((item) => `
-      <div class="feature-item" style="display: flex; gap: 12px; margin-bottom: 16px;">
-        <div class="feature-icon" style="flex-shrink: 0; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: #f1f5f9; border-radius: 10px;">${item.icon}</div>
+      <div class="feature-item" style="display: flex; gap: 16px; margin-bottom: 24px;">
+        <div class="feature-icon" style="flex-shrink: 0; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: #f1f5f9; border-radius: 12px; font-size: 1.2rem;">${item.icon}</div>
         <div>
-          <h5 style="margin: 0; font-size: 1rem; color: #1e293b;">${item.title[currentLang]}</h5>
-          <p style="margin: 4px 0 0; color: #64748b; font-size: 0.9rem;">${item.text[currentLang]}</p>
+          <h5 style="margin: 0; font-size: 1.15rem; color: #1e293b; font-weight: 800;">${item.title[currentLang]}</h5>
+          <p style="margin: 6px 0 0; color: #64748b; font-size: 1rem; line-height: 1.5;">${item.text[currentLang]}</p>
         </div>
       </div>
     `).join('');
 
     roadmapList.innerHTML = game.roadmap.map((item) => `
-      <div class="roadmap-item" style="padding-left: 16px; border-left: 3px solid var(--primary); margin-bottom: 16px;">
-        <h5 style="margin: 0; font-size: 1rem; color: #1e293b;">${item.title[currentLang]}</h5>
-        <p style="margin: 4px 0 0; color: #64748b; font-size: 0.9rem;">${item.text[currentLang]}</p>
+      <div class="roadmap-item" style="padding-left: 20px; border-left: 4px solid var(--primary); margin-bottom: 24px;">
+        <h5 style="margin: 0; font-size: 1.15rem; color: #1e293b; font-weight: 800;">${item.title[currentLang]}</h5>
+        <p style="margin: 6px 0 0; color: #64748b; font-size: 1rem;">${item.text[currentLang]}</p>
       </div>
     `).join('');
 
     if (game.preview && game.preview.type === 'youtube') {
       previewArea.innerHTML = `
-        <div class="video-wrapper" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 16px;">
+        <div class="video-wrapper" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
           <iframe src="${game.preview.value}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen></iframe>
         </div>
       `;
     } else {
-      previewArea.innerHTML = `<div class="empty-media" style="padding: 40px; text-align: center; background: #f8fafc; border-radius: 16px; color: #94a3b8;">${translations[currentLang].emptyMedia}</div>`;
+      previewArea.innerHTML = `<div class="empty-media" style="padding: 60px; text-align: center; background: #f8fafc; border-radius: 24px; color: #94a3b8; font-weight: 700;">${translations[currentLang].emptyMedia}</div>`;
     }
 
     if (game.screenshots && game.screenshots.length > 0) {
       screenshotGallery.innerHTML = game.screenshots.map((shot) => `
         <figure style="margin: 0;">
-          <img src="${shot.src}" alt="${shot.caption}">
-          <figcaption style="font-size: 0.8rem; color: #94a3b8; margin-top: 10px; text-align: center;">${shot.caption}</figcaption>
+          <img src="${shot.src}" alt="${shot.caption}" style="width: 100%; border-radius: 20px; display: block;">
+          <figcaption style="font-size: 0.9rem; color: #94a3b8; margin-top: 12px; text-align: center; font-weight: 600;">${shot.caption}</figcaption>
         </figure>
       `).join('');
     } else {
-      screenshotGallery.innerHTML = `<div class="empty-media" style="width: 100%; padding: 40px; text-align: center; background: #f8fafc; border-radius: 16px; color: #94a3b8;">${translations[currentLang].emptyMedia}</div>`;
+      screenshotGallery.innerHTML = `<div class="empty-media" style="width: 100%; padding: 60px; text-align: center; background: #f8fafc; border-radius: 24px; color: #94a3b8; font-weight: 700;">${translations[currentLang].emptyMedia}</div>`;
     }
 
     detailsArea.classList.add('active');
     detailsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
-  // Initial Load
   updateStaticUI();
   updateLangButtons();
   renderGrid();
