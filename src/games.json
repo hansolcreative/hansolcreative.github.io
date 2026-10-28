@@ -1,0 +1,172 @@
+{
+  "studio": {
+    "name": {
+      "ko": "Hansol Creative",
+      "en": "Hansol Creative"
+    },
+    "legalName": {
+      "ko": "한솔크리에이티브 (HansolCreative)",
+      "en": "HansolCreative"
+    },
+    "country": {
+      "ko": "대한민국",
+      "en": "Republic of Korea"
+    },
+    "email": "hansolcreative@gmail.com",
+    "privacyOfficer": {
+      "ko": "한솔크리에이티브 개인정보 보호 담당",
+      "en": "HansolCreative privacy contact"
+    },
+    "business": {
+      "representative": "",
+      "address": {
+        "ko": "",
+        "en": ""
+      },
+      "phone": "",
+      "registrationNo": "",
+      "mailOrderNo": ""
+    }
+  },
+  "games": [
+    {
+      "slug": "awake-in-the-tower",
+      "name": {
+        "ko": "눈을 뜨니 탑이었다",
+        "en": "Awake in the Tower"
+      },
+      "logo": "resources/logos/awake-in-the-tower.png",
+      "logoType": "wordmark",
+      "status": "upcoming",
+      "stores": {},
+      "googleLogin": true,
+      "iap": true,
+      "ads": true,
+      "processors": [
+        "google-play-games",
+        "admob",
+        "ugs",
+        "fcm",
+        "google-play-billing"
+      ],
+      "effective": "2026-10-27",
+      "featured": true,
+      "logoKo": "resources/logos/awake-in-the-tower-ko.png",
+      "genre": {
+        "ko": "3D 액션 RPG",
+        "en": "3D Action RPG"
+      },
+      "tagline": {
+        "ko": "눈을 떠 보니 낯선 탑 안. 정상을 향해 싸우며 올라가는 3D 액션 RPG.",
+        "en": "You wake up inside a strange tower. Fight your way to the top in this 3D action RPG."
+      }
+    },
+    {
+      "slug": "mahjong-passport",
+      "name": {
+        "ko": "Mahjong Passport",
+        "en": "Mahjong Passport"
+      },
+      "logo": "",
+      "logoType": "icon",
+      "status": "upcoming",
+      "stores": {},
+      "googleLogin": true,
+      "iap": true,
+      "ads": true,
+      "processors": [
+        "google-signin",
+        "admob",
+        "firebase-auth",
+        "firebase-analytics",
+        "firebase-crashlytics",
+        "google-play-billing"
+      ],
+      "effective": "2026-10-27",
+      "featured": true,
+      "genre": {
+        "ko": "마작 퍼즐",
+        "en": "Mahjong Puzzle"
+      },
+      "tagline": {
+        "ko": "세계 곳곳을 여행하며 여권에 도장을 모으는 마작 게임.",
+        "en": "Travel the world and collect passport stamps, one mahjong board at a time."
+      }
+    },
+    {
+      "slug": "fruit-toktok",
+      "name": {
+        "ko": "과일통통",
+        "en": "Fruit TokTok"
+      },
+      "logo": "resources/logos/fruit-toktok.png",
+      "logoType": "icon",
+      "status": "released",
+      "stores": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.HansolCreative.MelonIdle"
+      },
+      "googleLogin": true,
+      "iap": false,
+      "ads": true,
+      "processors": [
+        "google-signin",
+        "admob",
+        "firebase-auth",
+        "firebase-analytics",
+        "firebase-crashlytics"
+      ],
+      "effective": "2026-10-27",
+      "featured": false
+    },
+    {
+      "slug": "wordy-buddy",
+      "name": {
+        "ko": "낱말짝꿍",
+        "en": "Wordy Buddy"
+      },
+      "logo": "resources/logos/wordy-buddy.png",
+      "logoType": "icon",
+      "status": "released",
+      "stores": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.HansolCreative.WordMatch"
+      },
+      "googleLogin": true,
+      "iap": false,
+      "ads": true,
+      "processors": [
+        "google-signin",
+        "admob",
+        "firebase-auth",
+        "firebase-analytics",
+        "firebase-crashlytics"
+      ],
+      "effective": "2026-10-27",
+      "featured": false
+    },
+    {
+      "slug": "number-crush",
+      "name": {
+        "ko": "넘버 크러시",
+        "en": "Number Crush"
+      },
+      "logo": "resources/logos/number-crush.png",
+      "logoType": "icon",
+      "status": "released",
+      "stores": {
+        "googlePlay": "https://play.google.com/store/apps/details?id=com.HansolCreative.NumberBlocks"
+      },
+      "googleLogin": true,
+      "iap": false,
+      "ads": true,
+      "processors": [
+        "google-signin",
+        "admob",
+        "firebase-auth",
+        "firebase-analytics",
+        "firebase-crashlytics"
+      ],
+      "effective": "2026-10-27",
+      "featured": false
+    }
+  ]
+}

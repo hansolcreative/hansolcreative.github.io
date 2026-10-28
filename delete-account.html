@@ -1,125 +1,77 @@
-<!DOCTYPE html>
-<html lang="ko">
+<!doctype html>
+<html lang="ko" data-lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Account Deletion | Hansol Creative</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/subpage.css" />
-  <style>
-    .copy-section {
-      background: #f1f5f9;
-      padding: 30px;
-      border-radius: 24px;
-      margin: 32px 0;
-      border: 2px dashed var(--border);
-      position: relative;
-    }
-    .copy-text {
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 1rem;
-      line-height: 1.8;
-      color: var(--text);
-      white-space: pre-wrap;
-      margin: 0;
-    }
-    .btn-copy {
-      margin-top: 16px;
-      width: 100%;
-      background: var(--primary);
-      color: white;
-    }
-    .email-display {
-      display: inline-block;
-      padding: 8px 16px;
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      font-weight: 800;
-      color: var(--primary);
-      margin: 10px 0;
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Account &amp; Data Deletion — All Hansol Creative games</title>
+<meta name="description" content="Account &amp; Data Deletion for All Hansol Creative games by Hansol Creative.">
+<link rel="stylesheet" href="css/site.css?v=4f328487">
+<script>(function(){var d=document.documentElement,l;try{l=new URLSearchParams(location.search).get("lang")||localStorage.getItem("lang")}catch(e){}if(l!=="ko"&&l!=="en")l=/^ko/i.test(navigator.language||"")?"ko":"en";d.setAttribute("data-lang",l);d.lang=l;window.setLang=function(x){d.setAttribute("data-lang",x);d.lang=x;try{localStorage.setItem("lang",x)}catch(e){}document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.v===x)})};document.addEventListener("DOMContentLoaded",function(){setLang(l)})})();</script>
 </head>
 <body>
-  <header>
-    <div class="container header-inner">
-      <a href="index.html" class="brand">
-        <h1>Hansol Creative</h1>
-        <p>함께 즐거움을 나누는 게임 스튜디오</p>
-      </a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">Hansol Creative</a>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-v="ko" aria-pressed="true" onclick="setLang('ko')">KO</button>
+      <button type="button" data-v="en" aria-pressed="false" onclick="setLang('en')">EN</button>
     </div>
-  </header>
-
-  <main class="page-content">
-    <div class="container">
-      <div class="sub-panel">
-        <h1>Account Deletion Guide</h1>
-        <p class="panel-desc">안전한 데이터 삭제를 위해 아래 양식에 맞춰 메일을 보내주세요.</p>
-        
-        <div style="text-align: center; margin-bottom: 40px;">
-          <p>보내실 곳:</p>
-          <div class="email-display" id="adminEmail">hansolcreative@gmail.com</div>
-          <button class="btn btn-secondary" style="min-height: 40px; padding: 0 12px; margin-left: 8px; font-size: 0.85rem;" onclick="copyEmail()">주소 복사</button>
-        </div>
-
-        <div class="notice-box" style="margin-bottom: 32px;">
-          <p style="color: #e11d48; font-weight: 900; margin-bottom: 8px;">⚠️ 경고: 데이터 복구 불가 (Irreversible Action)</p>
-          <p>
-            계정 삭제 처리 시 해당 게임의 모든 진행 데이터, 업적 및 구매 항목 정보가 영구적으로 파기되며, 
-            <strong>한번 삭제된 데이터는 어떤 경우에도 복구가 불가능</strong>합니다. 신중하게 결정해 주세요.
-          </p>
-        </div>
-
-        <div class="notice-box" style="margin-bottom: 32px; background: #f8fafc; border-left-color: #94a3b8;">
-          정보 보호를 위해 <strong>게임 내에서 확인 가능한 사용자 ID(UID)</strong>를 반드시 포함해 주셔야 합니다. 
-          메일 접수 후 7일 이내에 모든 데이터가 처리됩니다.
-        </div>
-
-        <h3>메일 양식 (Email Template)</h3>
-        <div class="copy-section">
-          <pre class="copy-text" id="templateText">
-[계정 삭제 요청]
-1. 대상 게임: (예: 낱말짝꿍 / Number Crush)
-2. 가입 이메일: (로그인 시 사용한 이메일)
-3. 사용자 ID (UID): (게임 설정에서 복사한 ID)
-4. 로그인 방법: (Google / Apple / Guest)
-          </pre>
-          <button class="btn btn-copy" onclick="copyTemplate()">양식 복사하기</button>
-        </div>
-
-        <div style="margin-top: 48px; text-align: center;">
-          <a href="index.html" class="btn btn-secondary">홈으로 돌아가기</a>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    <div class="container footer-inner">
-      <div class="footer-links">
-        <a href="privacy-policy.html">Privacy Policy</a>
-        &nbsp;|&nbsp;
-        <a href="delete-account.html">Delete Account</a>
-      </div>
-      <p>© 2026 Hansol Creative. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <script>
-    function copyEmail() {
-      const email = document.getElementById('adminEmail').innerText;
-      navigator.clipboard.writeText(email).then(() => {
-        alert('이메일 주소가 복사되었습니다.');
-      });
-    }
-
-    function copyTemplate() {
-      const text = document.getElementById('templateText').innerText;
-      navigator.clipboard.writeText(text).then(() => {
-        alert('메일 양식이 복사되었습니다. 메일 앱을 열어 붙여넣어 주세요.');
-      });
-    }
-  </script>
+  </div>
+</header>
+<main class="wrap doc">
+  <div class="crumb"><span><span data-l="ko">Hansol Creative 전체 게임</span><span data-l="en">All Hansol Creative games</span></span></div>
+  <nav class="tabs"><a href="privacy-policy.html"><span data-l="ko">개인정보 처리방침</span><span data-l="en">Privacy Policy</span></a><a href="terms.html"><span data-l="ko">이용약관</span><span data-l="en">Terms of Service</span></a><a href="#" aria-current="page"><span data-l="ko">계정 및 데이터 삭제</span><span data-l="en">Account & Data Deletion</span></a></nav>
+  <article data-l="ko" lang="ko"><h1>계정 및 데이터 삭제 요청</h1>
+<p class="meta">Hansol Creative 게임에서 사용하는 계정과 관련 데이터의 삭제를 요청하는 방법입니다.</p>
+<div class="note warn">삭제된 계정과 게임 데이터, 구매한 아이템은 복구할 수 없습니다.</div>
+<h2>게임 안에서 삭제하기</h2>
+<p>게임 설정 화면에 계정 삭제 메뉴가 있는 경우 그곳에서 바로 삭제할 수 있습니다. 메뉴가 없다면 아래 이메일로 요청해 주세요.</p>
+<h2>이메일로 요청하기</h2>
+<p><a href="mailto:hansolcreative@gmail.com">hansolcreative@gmail.com</a> 로 아래 양식을 보내 주세요. 본인 확인 후 접수일로부터 <strong>10일 이내</strong>에 처리하고 결과를 회신합니다.</p>
+<pre id="tmpl-ko">[계정 삭제 요청]
+게임: 
+로그인 방식: (Google / 게스트)
+로그인 이메일: 
+사용자 ID(UID): (게임 설정 화면에서 확인)</pre>
+<button class="btn" type="button" onclick="navigator.clipboard.writeText(document.getElementById('tmpl-ko').innerText).then(()=>{this.textContent='✓'})">양식 복사</button>
+<h2>삭제되는 데이터</h2>
+<ul><li>계정 식별자(UID), 로그인 이메일·이름·프로필 사진</li><li>서버에 저장된 게임 진행 데이터, 순위표 기록</li><li>푸시 알림 토큰 등 계정과 연결된 기기 식별 정보</li></ul>
+<h2>보관될 수 있는 데이터</h2>
+<ul><li>인앱 결제 기록: 「전자상거래 등에서의 소비자보호에 관한 법률」에 따라 대금결제 및 재화 등의 공급에 관한 기록 5년 보관</li><li>관계 법령상 보관 의무가 있거나 부정 이용 조사 중인 경우 해당 기간 동안 보관</li><li>익명·통계 처리되어 개인을 식별할 수 없는 데이터</li></ul>
+<p class="note">게스트로만 플레이한 경우 데이터는 기기에 저장되므로, 앱을 삭제하거나 앱 데이터를 지우면 함께 삭제됩니다.</p>
+<h2>게임별 삭제 안내</h2>
+<ul class="game-list-inline"><li><strong>눈을 뜨니 탑이었다</strong><a href="games/awake-in-the-tower/delete-account.html">계정 및 데이터 삭제 요청</a></li><li><strong>Mahjong Passport</strong><a href="games/mahjong-passport/delete-account.html">계정 및 데이터 삭제 요청</a></li><li><strong>과일통통</strong><a href="games/fruit-toktok/delete-account.html">계정 및 데이터 삭제 요청</a></li><li><strong>낱말짝꿍</strong><a href="games/wordy-buddy/delete-account.html">계정 및 데이터 삭제 요청</a></li><li><strong>넘버 크러시</strong><a href="games/number-crush/delete-account.html">계정 및 데이터 삭제 요청</a></li></ul></article>
+<article data-l="en" lang="en"><h1>Request account and data deletion</h1>
+<p class="meta">How to request deletion of your account and related data for Hansol Creative games.</p>
+<div class="note warn">Deleted accounts, game data and purchased items cannot be restored.</div>
+<h2>Delete in the game</h2>
+<p>If the game settings have a Delete account option, you can delete your account there directly. Otherwise, email us.</p>
+<h2>Request by email</h2>
+<p>Send the form below to <a href="mailto:hansolcreative@gmail.com">hansolcreative@gmail.com</a>. After verifying the request, we will complete it <strong>within 10 days</strong> and reply to you.</p>
+<pre id="tmpl-en">[Account deletion request]
+Game: 
+Sign-in method: (Google / Guest)
+Sign-in email: 
+User ID (UID): (shown in the game's settings)</pre>
+<button class="btn" type="button" onclick="navigator.clipboard.writeText(document.getElementById('tmpl-en').innerText).then(()=>{this.textContent='✓'})">Copy form</button>
+<h2>Data that is deleted</h2>
+<ul><li>Account identifier (UID), sign-in email, name and profile picture</li><li>Game progress stored on our servers and leaderboard records</li><li>Push tokens and other device identifiers linked to the account</li></ul>
+<h2>Data that may be kept</h2>
+<ul><li>In-app purchase records: kept for 5 years as required by the Korean Act on Consumer Protection in Electronic Commerce</li><li>Data we are legally required to keep, or that is part of an ongoing fraud investigation, for that period</li><li>Anonymized or aggregated data that cannot identify you</li></ul>
+<p class="note">If you only played as a guest, your data is stored on your device and is removed when you uninstall the app or clear its data.</p>
+<h2>Deletion by game</h2>
+<ul class="game-list-inline"><li><strong>Awake in the Tower</strong><a href="games/awake-in-the-tower/delete-account.html">Request account and data deletion</a></li><li><strong>Mahjong Passport</strong><a href="games/mahjong-passport/delete-account.html">Request account and data deletion</a></li><li><strong>Fruit TokTok</strong><a href="games/fruit-toktok/delete-account.html">Request account and data deletion</a></li><li><strong>Wordy Buddy</strong><a href="games/wordy-buddy/delete-account.html">Request account and data deletion</a></li><li><strong>Number Crush</strong><a href="games/number-crush/delete-account.html">Request account and data deletion</a></li></ul></article>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <nav>
+      <a href="privacy-policy.html"><span data-l="ko">개인정보 처리방침</span><span data-l="en">Privacy Policy</span></a>
+      <a href="terms.html"><span data-l="ko">이용약관</span><span data-l="en">Terms of Service</span></a>
+      <a href="delete-account.html"><span data-l="ko">계정 삭제</span><span data-l="en">Delete Account</span></a>
+      <a href="mailto:hansolcreative@gmail.com">hansolcreative@gmail.com</a>
+    </nav>
+    <span>© 2026 Hansol Creative</span>
+  </div>
+</footer>
 </body>
 </html>
