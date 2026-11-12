@@ -76,13 +76,19 @@
       "ads": true,
       "processors": [
         "google-signin",
+        "apple-game-center",
         "admob",
+        "unity-ads",
+        "liftoff",
         "firebase-auth",
+        "cloud-firestore",
         "firebase-analytics",
         "firebase-crashlytics",
-        "google-play-billing"
+        "firebase-remote-config",
+        "google-play-billing",
+        "app-store-iap"
       ],
-      "effective": "2026-10-27",
+      "effective": "2026-11-13",
       "featured": true,
       "genre": {
         "ko": "마작 퍼즐",
@@ -91,7 +97,8 @@
       "tagline": {
         "ko": "세계 곳곳을 여행하며 여권에 도장을 모으는 마작 게임.",
         "en": "Travel the world and collect passport stamps, one mahjong board at a time."
-      }
+      },
+      "gameCenterLogin": true
     },
     {
       "slug": "fruit-toktok",

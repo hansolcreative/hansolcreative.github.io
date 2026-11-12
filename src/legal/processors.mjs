@@ -3,6 +3,7 @@
 const GOOGLE = { ko: "Google LLC", en: "Google LLC" };
 const UNITY = { ko: "Unity Technologies", en: "Unity Technologies" };
 const US = { ko: "미국", en: "United States" };
+const APPLE = { ko: "Apple Inc.", en: "Apple Inc." };
 
 export const PROCESSORS = {
   "google-signin": {
@@ -98,6 +99,66 @@ export const PROCESSORS = {
     policy: "https://firebase.google.com/support/privacy",
     data: { ko: "푸시 토큰, 기기 정보", en: "Push token, device info" },
     purpose: { ko: "푸시 알림 발송(동의 시)", en: "Sending push notifications (with permission)" },
+  },
+  "apple-game-center": {
+    name: { ko: "Apple Game Center (iOS)", en: "Apple Game Center (iOS)" },
+    company: APPLE,
+    country: US,
+    policy: "https://www.apple.com/legal/privacy/",
+    data: {
+      ko: "Game Center 플레이어 ID, 닉네임, 로그인 확인 정보",
+      en: "Game Center player ID, nickname, sign-in verification data",
+    },
+    purpose: { ko: "로그인(선택) 및 클라우드 저장 계정 식별", en: "Optional sign-in and identifying your cloud save" },
+  },
+  "app-store-iap": {
+    name: { ko: "App Store 인앱 구매 (iOS)", en: "App Store In-App Purchase (iOS)" },
+    company: APPLE,
+    country: US,
+    policy: "https://www.apple.com/legal/privacy/",
+    data: {
+      ko: "거래 ID, 상품 ID, 구매 일시 (카드 등 결제수단 정보는 Apple이 처리하며 회사는 받지 않음)",
+      en: "Transaction ID, product ID, purchase time (payment details are handled by Apple and never received by us)",
+    },
+    purpose: { ko: "인앱 결제 처리·검증, 구매 복원", en: "Processing and verifying in-app purchases, restoring purchases" },
+  },
+  "cloud-firestore": {
+    name: { ko: "Cloud Firestore", en: "Cloud Firestore" },
+    company: GOOGLE,
+    country: US,
+    policy: "https://firebase.google.com/support/privacy",
+    data: { ko: "사용자 UID, 게임 진행 데이터", en: "User UID, game progress data" },
+    purpose: { ko: "로그인한 이용자의 게임 데이터 클라우드 저장·복원", en: "Cloud save and restore for signed-in players" },
+  },
+  "firebase-remote-config": {
+    name: { ko: "Firebase Remote Config", en: "Firebase Remote Config" },
+    company: GOOGLE,
+    country: US,
+    policy: "https://firebase.google.com/support/privacy",
+    data: { ko: "앱 인스턴스 ID, 앱 버전, 기기·OS 정보, 국가·언어", en: "App instance ID, app version, device/OS info, country and language" },
+    purpose: { ko: "게임 설정값·업데이트 안내 원격 적용", en: "Delivering game settings and update notices remotely" },
+  },
+  "unity-ads": {
+    name: { ko: "Unity Ads (AdMob 미디에이션)", en: "Unity Ads (via AdMob mediation)" },
+    company: UNITY,
+    country: US,
+    policy: "https://unity.com/legal/game-player-and-app-user-privacy-policy",
+    data: {
+      ko: "광고 ID(AAID/IDFA), IP 주소, 기기 정보, 광고 노출·클릭 기록, 동의 상태",
+      en: "Advertising ID (AAID/IDFA), IP address, device info, ad impressions/clicks, consent status",
+    },
+    purpose: { ko: "광고 표시(동의 시 맞춤형), 성과 측정, 부정행위 방지", en: "Serving ads (personalized only with consent), measurement, fraud prevention" },
+  },
+  liftoff: {
+    name: { ko: "Liftoff Monetize (Vungle, AdMob 미디에이션)", en: "Liftoff Monetize (Vungle, via AdMob mediation)" },
+    company: { ko: "Liftoff Mobile, Inc.", en: "Liftoff Mobile, Inc." },
+    country: US,
+    policy: "https://liftoff.io/privacy-policy/",
+    data: {
+      ko: "광고 ID(AAID/IDFA), IP 주소, 기기 정보, 광고 노출·클릭 기록, 동의 상태",
+      en: "Advertising ID (AAID/IDFA), IP address, device info, ad impressions/clicks, consent status",
+    },
+    purpose: { ko: "광고 표시(동의 시 맞춤형), 성과 측정, 부정행위 방지", en: "Serving ads (personalized only with consent), measurement, fraud prevention" },
   },
   "google-play-billing": {
     name: { ko: "Google Play 결제", en: "Google Play Billing" },

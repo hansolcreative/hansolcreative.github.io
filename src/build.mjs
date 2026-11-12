@@ -24,7 +24,7 @@ const langScript = `<script>(function(){var d=document.documentElement,l;try{l=n
 
 function layout({ root, title, description, body }) {
   return `<!doctype html>
-<html lang="ko" data-lang="ko">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,8 +38,8 @@ ${langScript}
   <div class="wrap">
     <a class="brand" href="${root}index.html">Hansol Creative</a>
     <div class="lang" role="group" aria-label="Language">
-      <button type="button" data-v="ko" aria-pressed="true" onclick="setLang('ko')">KO</button>
-      <button type="button" data-v="en" aria-pressed="false" onclick="setLang('en')">EN</button>
+      <button type="button" data-v="en" aria-pressed="true" onclick="setLang('en')">EN</button>
+      <button type="button" data-v="ko" aria-pressed="false" onclick="setLang('ko')">KO</button>
     </div>
   </div>
 </header>

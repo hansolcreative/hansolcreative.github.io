@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko" data-lang="ko">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,8 +13,8 @@
   <div class="wrap">
     <a class="brand" href="index.html">Hansol Creative</a>
     <div class="lang" role="group" aria-label="Language">
-      <button type="button" data-v="ko" aria-pressed="true" onclick="setLang('ko')">KO</button>
-      <button type="button" data-v="en" aria-pressed="false" onclick="setLang('en')">EN</button>
+      <button type="button" data-v="en" aria-pressed="true" onclick="setLang('en')">EN</button>
+      <button type="button" data-v="ko" aria-pressed="false" onclick="setLang('ko')">KO</button>
     </div>
   </div>
 </header>
@@ -25,12 +25,12 @@
 <p class="meta">Hansol Creative 게임에서 사용하는 계정과 관련 데이터의 삭제를 요청하는 방법입니다.</p>
 <div class="note warn">삭제된 계정과 게임 데이터, 구매한 아이템은 복구할 수 없습니다.</div>
 <h2>게임 안에서 삭제하기</h2>
-<p>게임 설정 화면에 계정 삭제 메뉴가 있는 경우 그곳에서 바로 삭제할 수 있습니다. 메뉴가 없다면 아래 이메일로 요청해 주세요.</p>
+<p>게임 설정 화면에 계정 삭제 메뉴(예: 설정 → 계정 및 데이터 삭제)가 있으면 그곳에서 바로 삭제할 수 있습니다. 서버의 게임 데이터와 계정이 즉시 삭제되고 기기의 진행 상황도 초기화됩니다. 메뉴가 없다면 아래 이메일로 요청해 주세요.</p>
 <h2>이메일로 요청하기</h2>
 <p><a href="mailto:hansolcreative@gmail.com">hansolcreative@gmail.com</a> 로 아래 양식을 보내 주세요. 본인 확인 후 접수일로부터 <strong>10일 이내</strong>에 처리하고 결과를 회신합니다.</p>
 <pre id="tmpl-ko">[계정 삭제 요청]
 게임: 
-로그인 방식: (Google / 게스트)
+로그인 방식: (Google / Game Center / 게스트)
 로그인 이메일: 
 사용자 ID(UID): (게임 설정 화면에서 확인)</pre>
 <button class="btn" type="button" onclick="navigator.clipboard.writeText(document.getElementById('tmpl-ko').innerText).then(()=>{this.textContent='✓'})">양식 복사</button>
@@ -45,12 +45,12 @@
 <p class="meta">How to request deletion of your account and related data for Hansol Creative games.</p>
 <div class="note warn">Deleted accounts, game data and purchased items cannot be restored.</div>
 <h2>Delete in the game</h2>
-<p>If the game settings have a Delete account option, you can delete your account there directly. Otherwise, email us.</p>
+<p>If the game settings have a delete option (for example, Settings → Delete Account & Data), you can delete your account there directly. Your account and the game data on our servers are deleted right away, and progress on the device is reset. Otherwise, email us.</p>
 <h2>Request by email</h2>
 <p>Send the form below to <a href="mailto:hansolcreative@gmail.com">hansolcreative@gmail.com</a>. After verifying the request, we will complete it <strong>within 10 days</strong> and reply to you.</p>
 <pre id="tmpl-en">[Account deletion request]
 Game: 
-Sign-in method: (Google / Guest)
+Sign-in method: (Google / Game Center / Guest)
 Sign-in email: 
 User ID (UID): (shown in the game's settings)</pre>
 <button class="btn" type="button" onclick="navigator.clipboard.writeText(document.getElementById('tmpl-en').innerText).then(()=>{this.textContent='✓'})">Copy form</button>

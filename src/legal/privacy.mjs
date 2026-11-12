@@ -18,6 +18,12 @@ export function privacy(lang, { studio, game, games }) {
   const usesProc = (...ks) => ks.some((k) => procKeys.includes(k));
   const effective = games.map((g) => g.effective).sort().at(-1);
   const subject = game ? `「${game.name[lang]}」` : ko ? "회사가 제공하는 모든 게임" : "all games published by us";
+  const gc = has("gameCenterLogin");
+  const signIn = has("googleLogin") && gc
+    ? { ko: "Google 로그인(Android) 또는 Game Center 로그인(iOS)", en: "Google Sign-In (Android) or Game Center sign-in (iOS)" }
+    : gc ? { ko: "Game Center 로그인", en: "Game Center sign-in" } : { ko: "Google 로그인", en: "Google Sign-In" };
+  const adPartners = [["unity-ads", "Unity Ads"], ["liftoff", "Liftoff (Vungle)"]].filter(([k]) => procKeys.includes(k)).map(([, n]) => n);
+  const appStore = usesProc("app-store-iap");
   const gameNames = games.map((g) => (ko ? `「${g.name.ko}」` : g.name.en)).join(", ");
 
   const sections = [];
@@ -44,6 +50,12 @@ export function privacy(lang, { studio, game, games }) {
       ko ? "Google 계정 이메일, 이름(표시 이름), 프로필 사진, 계정 식별자(UID)" : "Google account email, display name, profile picture, account identifier (UID)",
       ko ? "계약 이행(제15조①4호) / GDPR 6(1)(b)" : "Performance of contract (KR PIPA Art. 15(1)4; GDPR Art. 6(1)(b))",
     ]);
+  if (gc)
+    rows.push([
+      ko ? "Game Center 로그인(iOS, 선택) 및 클라우드 저장 계정 식별" : "Optional Game Center sign-in (iOS) and identifying your cloud save",
+      ko ? "Game Center 플레이어 ID, 닉네임, 계정 식별자(UID)" : "Game Center player ID, nickname, account identifier (UID)",
+      ko ? "계약 이행(제15조①4호) / GDPR 6(1)(b)" : "Performance of contract (KR PIPA Art. 15(1)4; GDPR Art. 6(1)(b))",
+    ]);
   rows.push([
     ko ? "게임 제공, 진행 데이터 저장·동기화" : "Providing the Game, saving and syncing progress",
     ko
@@ -54,7 +66,7 @@ export function privacy(lang, { studio, game, games }) {
   if (has("iap"))
     rows.push([
       ko ? "인앱 결제 처리·검증, 환불, 법정 기록 보관" : "Processing and verifying purchases, refunds, legally required records",
-      ko ? "주문 번호, 구매 토큰, 상품 ID, 구매 일시 (결제수단 정보는 받지 않음)" : "Order ID, purchase token, product ID, purchase time (we never receive payment card details)",
+      ko ? (appStore ? "주문 번호·거래 ID, 구매 토큰, 상품 ID, 구매 일시 (결제수단 정보는 받지 않음)" : "주문 번호, 구매 토큰, 상품 ID, 구매 일시 (결제수단 정보는 받지 않음)") : (appStore ? "Order or transaction ID, purchase token, product ID, purchase time (we never receive payment card details)" : "Order ID, purchase token, product ID, purchase time (we never receive payment card details)"),
       ko ? "계약 이행·법령상 의무(제15조①2호·4호) / GDPR 6(1)(b)·(c)" : "Contract and legal obligation (PIPA Art. 15(1)2, 4; GDPR Art. 6(1)(b), (c))",
     ]);
   rows.push([
@@ -85,9 +97,9 @@ export function privacy(lang, { studio, game, games }) {
     `${table(ko ? ["처리 목적", "처리 항목", "법적 근거"] : ["Purpose", "Data", "Legal basis"], rows)}
 ${
   ko
-    ? `<p>게임은 로그인 없이 게스트로 이용할 수 있으며, Google 로그인은 선택 사항입니다. 로그인하지 않으면 진행 데이터가 기기에만 저장되어 기기 변경 시 이어서 플레이할 수 없습니다.</p>
+    ? `<p>게임은 로그인 없이 게스트로 이용할 수 있으며, ${signIn.ko}은 선택 사항입니다. 로그인하지 않으면 진행 데이터가 기기에만 저장되어 기기 변경 시 이어서 플레이할 수 없습니다.</p>
 <p>회사는 민감정보, 고유식별정보(주민등록번호 등), 정밀 위치정보를 수집하지 않으며, 별도의 회원가입 절차를 운영하지 않습니다. 회사는 인공지능을 이용한 자동화된 결정을 하지 않습니다.</p>`
-    : `<p>You can play as a guest without signing in; Google Sign-In is optional. Without signing in, your progress is stored only on your device and cannot be carried to a new device.</p>
+    : `<p>You can play as a guest without signing in; ${signIn.en} is optional. Without signing in, your progress is stored only on your device and cannot be carried to a new device.</p>
 <p>We do not collect sensitive data, government identifiers, or precise location, and we do not run a separate registration system. We do not make automated decisions with legal or similarly significant effects.</p>`
 }`,
   );
@@ -154,18 +166,20 @@ ${ul([
       "ads",
       ko ? "광고 및 자동 수집 장치(광고 ID)" : "Advertising & device identifiers",
       ko
-        ? `<p>게임은 Google AdMob을 통해 광고를 표시합니다. AdMob은 앱 안에서 광고 ID 등 행태정보를 수집할 수 있습니다.</p>
-${table(["수집 도구", "수집 사업자", "수집 항목", "목적"], [["Google Mobile Ads SDK (AdMob)", "Google LLC", "광고 ID, IP 주소, 기기 정보, 광고 노출·클릭 기록", "광고 표시, 맞춤형 광고(동의 시), 광고 성과 측정, 부정 클릭 방지"]])}
-<p>EEA·영국·스위스, 미국 일부 주 등에서는 게임 첫 실행 시 Google 사용자 메시지 플랫폼(UMP)을 통해 동의 여부를 묻고, 동의하지 않으면 비맞춤형 광고만 표시합니다. 게임 설정의 개인정보 옵션(제공되는 경우)에서 언제든 선택을 바꿀 수 있습니다.</p>
+        ? `<p>게임은 Google AdMob을 통해 광고를 표시합니다${adPartners.length ? ` (AdMob 미디에이션으로 ${adPartners.join(", ")} 광고도 표시)` : ""}. ${adPartners.length ? "이들 광고 사업자는" : "AdMob은"} 앱 안에서 광고 ID 등 행태정보를 수집할 수 있습니다.</p>
+${table(["수집 도구", "수집 사업자", "수집 항목", "목적"], [["Google Mobile Ads SDK (AdMob)", "Google LLC", "광고 ID, IP 주소, 기기 정보, 광고 노출·클릭 기록", "광고 표시, 맞춤형 광고(동의 시), 광고 성과 측정, 부정 클릭 방지"], ...(procKeys.includes("unity-ads") ? [["Unity Ads SDK", "Unity Technologies", "광고 ID, IP 주소, 기기 정보, 광고 노출·클릭 기록", "광고 표시, 맞춤형 광고(동의 시), 성과 측정"]] : []), ...(procKeys.includes("liftoff") ? [["Liftoff Monetize SDK (Vungle)", "Liftoff Mobile, Inc.", "광고 ID, IP 주소, 기기 정보, 광고 노출·클릭 기록", "광고 표시, 맞춤형 광고(동의 시), 성과 측정"]] : [])])}
+<p>EEA·영국·스위스, 미국 일부 주 등에서는 게임 첫 실행 시 Google 사용자 메시지 플랫폼(UMP)을 통해 동의 여부를 묻고, 동의하지 않으면 비맞춤형 광고만 표시합니다. 게임 설정의 개인정보 옵션(제공되는 경우)에서 언제든 선택을 바꿀 수 있습니다.</p>${gc ? `
+<p>iOS에서는 광고를 요청하기 전에 Apple 앱 추적 투명성(ATT) 창으로 추적 허용 여부를 묻습니다. 허용하지 않으면 광고 ID(IDFA)를 사용하지 않으며, 광고는 계속 표시되지만 맞춤형이 아닙니다.</p>` : ""}
 <p><strong>광고 ID 거부 방법</strong></p>
 ${ul([
   "Android: 설정 → 보안 및 개인정보 보호(또는 Google) → 개인정보 보호 → 광고 → 광고 ID 삭제",
   "iOS: 설정 → 개인정보 보호 및 보안 → 추적 → 앱이 추적을 요청하도록 허용 끄기",
 ])}
 <p>광고 ID를 삭제하거나 추적을 거부해도 광고는 표시되지만 맞춤형 광고가 아닌 일반 광고가 표시됩니다. Google의 데이터 이용 방식은 <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">Google 파트너 사이트·앱 정책</a>에서 확인할 수 있습니다.</p>`
-        : `<p>The Game shows ads through Google AdMob, which may collect device identifiers and usage data inside the app.</p>
-${table(["Tool", "Company", "Data", "Purpose"], [["Google Mobile Ads SDK (AdMob)", "Google LLC", "Advertising ID, IP address, device info, ad impressions and clicks", "Serving ads, personalized ads (with consent), measurement, fraud prevention"]])}
-<p>In the EEA, UK, Switzerland and certain US states, the Game asks for your choice through Google's User Messaging Platform (UMP) on first launch. If you decline, only non-personalized ads are shown. You can change your choice at any time from the privacy option in the game settings, where available.</p>
+        : `<p>The Game shows ads through Google AdMob${adPartners.length ? ` (including ads from ${adPartners.join(" and ")} through AdMob mediation)` : ""}. ${adPartners.length ? "These ad providers" : "AdMob"} may collect device identifiers and usage data inside the app.</p>
+${table(["Tool", "Company", "Data", "Purpose"], [["Google Mobile Ads SDK (AdMob)", "Google LLC", "Advertising ID, IP address, device info, ad impressions and clicks", "Serving ads, personalized ads (with consent), measurement, fraud prevention"], ...(procKeys.includes("unity-ads") ? [["Unity Ads SDK", "Unity Technologies", "Advertising ID, IP address, device info, ad impressions and clicks", "Serving ads, personalized ads (with consent), measurement"]] : []), ...(procKeys.includes("liftoff") ? [["Liftoff Monetize SDK (Vungle)", "Liftoff Mobile, Inc.", "Advertising ID, IP address, device info, ad impressions and clicks", "Serving ads, personalized ads (with consent), measurement"]] : [])])}
+<p>In the EEA, UK, Switzerland and certain US states, the Game asks for your choice through Google's User Messaging Platform (UMP) on first launch. If you decline, only non-personalized ads are shown. You can change your choice at any time from the privacy option in the game settings, where available.</p>${gc ? `
+<p>On iOS, the Game asks for permission through Apple's App Tracking Transparency prompt before requesting ads. If you do not allow tracking, your advertising identifier (IDFA) is not used; you will still see ads, but they will not be personalized.</p>` : ""}
 <p><strong>How to opt out of ad tracking</strong></p>
 ${ul([
   "Android: Settings → Security & privacy (or Google) → Privacy → Ads → Delete advertising ID",
@@ -179,7 +193,9 @@ ${ul([
     ? ["인터넷·네트워크 상태 확인 (필수): 게임 데이터 저장·광고 표시", "진동 (선택적 기능): 게임 효과", "절전 모드 방지: 게임 플레이 중 화면 유지"]
     : ["Internet and network state (required): saving data, showing ads", "Vibration: in-game feedback", "Prevent sleep: keep the screen on during play"];
   if (usesProc("fcm")) perms.push(ko ? "알림 (선택): 푸시 알림. 허용하지 않아도 게임을 이용할 수 있습니다." : "Notifications (optional): push notifications. The Game works without it.");
-  if (has("iap")) perms.push(ko ? "Google Play 결제 (필수): 인앱 구매" : "Google Play billing (required): in-app purchases");
+  if (has("iap")) perms.push(appStore ? (ko ? "Google Play 결제 / App Store 인앱 구매: 인앱 구매" : "Google Play billing / App Store in-app purchase: in-app purchases") : (ko ? "Google Play 결제 (필수): 인앱 구매" : "Google Play billing (required): in-app purchases"));
+  if (gc) perms.push(ko ? "앱 추적 투명성 (iOS, 선택): 맞춤형 광고용 광고 ID 사용. 허용하지 않아도 게임을 이용할 수 있습니다." : "App Tracking Transparency (iOS, optional): use of the advertising identifier for personalized ads. The Game works without it.");
+  if (gc) perms.push(ko ? "Game Center (iOS, 선택): 로그인 및 클라우드 저장" : "Game Center (iOS, optional): sign-in and cloud save");
   add("permissions", ko ? "앱 접근 권한" : "App permissions", ul(perms));
 
   // 8. Destruction
@@ -230,11 +246,11 @@ ${ul([
 
   // 12. US
   const ccpaCats = [
-    [ko ? "식별자" : "Identifiers", ko ? "이메일, 계정 ID, 광고 ID, IP 주소" : "Email, account ID, advertising ID, IP address", ko ? "이용자, 기기" : "You, your device", ko ? "광고 파트너(Google)와 공유 — 맞춤형 광고 동의 시" : "Shared with ad partner (Google) for personalized ads, if you allow"],
+    [ko ? "식별자" : "Identifiers", ko ? "이메일, 계정 ID, 광고 ID, IP 주소" : "Email, account ID, advertising ID, IP address", ko ? "이용자, 기기" : "You, your device", ko ? `광고 파트너(Google${adPartners.length ? " 및 미디에이션 광고 사업자" : ""})와 공유 — 맞춤형 광고 동의 시` : `Shared with ad partners (Google${adPartners.length ? " and mediation ad networks" : ""}) for personalized ads, if you allow`],
     [ko ? "인터넷 및 기타 네트워크 활동" : "Internet or other network activity", ko ? "앱 이용 기록, 광고 상호작용, 오류 기록" : "In-app usage, ad interactions, crash logs", ko ? "기기" : "Your device", ko ? "광고 파트너와 공유 — 동의 시" : "Shared with ad partner, if you allow"],
     [ko ? "대략적 위치" : "Approximate geolocation", ko ? "IP 기반 국가·지역" : "Country/region from IP", ko ? "기기" : "Your device", ko ? "판매·공유하지 않음" : "Not sold or shared"],
   ];
-  if (has("iap")) ccpaCats.push([ko ? "상업 정보" : "Commercial information", ko ? "구매 내역" : "Purchase history", ko ? "Google Play" : "Google Play", ko ? "판매·공유하지 않음" : "Not sold or shared"]);
+  if (has("iap")) ccpaCats.push([ko ? "상업 정보" : "Commercial information", ko ? "구매 내역" : "Purchase history", appStore ? "Google Play, App Store" : "Google Play", ko ? "판매·공유하지 않음" : "Not sold or shared"]);
   add(
     "us",
     ko ? "미국 거주자를 위한 추가 안내" : "US residents (including California)",
@@ -242,20 +258,20 @@ ${ul([
       ? `<p>캘리포니아 소비자 개인정보 보호법(CCPA/CPRA) 및 기타 미국 주법에 따른 추가 안내입니다. 지난 12개월간 회사가 수집한 개인정보의 범주는 다음과 같습니다. 출처·목적은 위 <a href="#purposes">처리 목적</a>을, 범주별 보유 기간은 <a href="#retention">보유 기간</a>을 참고하세요.</p>
 ${table(["범주", "예시", "출처", "판매·공유 여부"], ccpaCats)}
 ${ul([
-  "회사는 금전을 받고 개인정보를 판매하지 않습니다. 다만 AdMob을 통한 맞춤형 광고는 CCPA상 교차 맥락 행동 광고를 위한 '공유'에 해당할 수 있습니다.",
+  "회사는 금전을 받고 개인정보를 판매하지 않습니다. 다만 AdMob(미디에이션 포함)을 통한 맞춤형 광고는 CCPA상 교차 맥락 행동 광고를 위한 '공유'에 해당할 수 있습니다.",
   "판매·공유 거부(Do Not Sell or Share): 게임 내 개인정보 옵션(미국 주 개인정보 메시지)에서 거부하거나, 기기 설정에서 광고 ID를 삭제하거나, 이메일로 요청할 수 있습니다. 인식 가능한 거부 신호(Global Privacy Control 등)를 받으면 거부 요청으로 처리합니다.",
   "민감한 개인정보는 수집하지 않습니다. 16세 미만 소비자의 개인정보를 판매·공유한다는 사실을 알지 못합니다.",
   "권리: 알 권리(열람), 삭제권, 정정권, 판매·공유 거부권, 권리 행사를 이유로 차별받지 않을 권리. 요청 시 계정 이메일 또는 UID로 본인을 확인하며, 대리인은 서면 위임을 제출해야 합니다. 요청을 거절한 경우 이메일로 이의를 제기할 수 있습니다.",
-  "Do Not Track: 게임은 웹 브라우저의 DNT 신호에 별도로 반응하지 않습니다. 제3자(Google)는 다른 앱·서비스에 걸쳐 시간 경과에 따라 정보를 수집할 수 있습니다.",
+  "Do Not Track: 게임은 웹 브라우저의 DNT 신호에 별도로 반응하지 않습니다. 제3자(Google 등 광고 사업자)는 다른 앱·서비스에 걸쳐 시간 경과에 따라 정보를 수집할 수 있습니다.",
 ])}`
       : `<p>This section supplements the policy for residents of California (CCPA/CPRA, CalOPPA) and other US states with comprehensive privacy laws. In the past 12 months we collected the categories below. For sources and purposes see <a href="#purposes">What we collect</a>; for retention by category see <a href="#retention">How long we keep data</a>.</p>
 ${table(["Category", "Examples", "Source", "Sold or shared?"], ccpaCats)}
 ${ul([
-  "We do not sell personal information for money. Personalized ads through AdMob may count as \"sharing\" for cross-context behavioral advertising.",
+  "We do not sell personal information for money. Personalized ads through AdMob (including mediation) may count as \"sharing\" for cross-context behavioral advertising.",
   "Do Not Sell or Share: opt out through the in-game privacy option (US state privacy message), by deleting your advertising ID in device settings, or by emailing us. We treat a recognized opt-out preference signal (such as Global Privacy Control) as an opt-out request.",
   "We do not collect sensitive personal information. We have no actual knowledge of selling or sharing the personal information of consumers under 16.",
   "Your rights: to know/access, delete, correct, opt out of sale/sharing and targeted advertising, and not to be discriminated against for exercising them. We verify requests using your account email or UID. Authorized agents must provide written permission. If we deny your request, you may appeal by replying to our decision email.",
-  "Do Not Track: the Game does not respond to browser DNT signals. Third parties (Google) may collect information about your activity over time and across apps.",
+  "Do Not Track: the Game does not respond to browser DNT signals. Third parties (Google and other ad providers) may collect information about your activity over time and across apps.",
 ])}`,
   );
 
