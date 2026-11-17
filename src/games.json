@@ -101,6 +101,45 @@
       "gameCenterLogin": true
     },
     {
+      "slug": "littlepaws",
+      "name": {
+        "ko": "마을은 오늘도 바빠",
+        "en": "Little Paws, Busy Days"
+      },
+      "logo": "resources/logos/littlepaws.png",
+      "logoType": "icon",
+      "status": "upcoming",
+      "stores": {},
+      "googleLogin": true,
+      "gameCenterLogin": true,
+      "iap": true,
+      "ads": true,
+      "processors": [
+        "google-play-games",
+        "apple-game-center",
+        "admob",
+        "unity-ads",
+        "liftoff",
+        "firebase-auth",
+        "cloud-firestore",
+        "firebase-analytics",
+        "firebase-crashlytics",
+        "firebase-remote-config",
+        "google-play-billing",
+        "app-store-iap"
+      ],
+      "effective": "2026-11-17",
+      "featured": true,
+      "genre": {
+        "ko": "방치형 동물 마을",
+        "en": "Cozy Idle Village"
+      },
+      "tagline": {
+        "ko": "작은 동물 친구들이 농사짓고 빵 굽고 낚시하며 마을을 키워 가는 아늑한 방치형 게임.",
+        "en": "Little animal friends farm, bake and fish to grow a cozy village, even while you're away."
+      }
+    },
+    {
       "slug": "fruit-toktok",
       "name": {
         "ko": "과일통통",
